@@ -12,7 +12,7 @@ const Dashboard = () => {
   return (
     <div className="w-full h-[full] font-inter">
       <NavBar />
-      <div className="mt-[90px] w-full h-full flex justify-center">
+      <div className="mt-[90px] w-full h-full flex justify-center bg-white">
         <div className="w-[1177px] min-w-[1177px] h-[205px]">
           <div className="w-full h-full bg-user-dashbtn-bg border-[1px] rounded-[10px] border-user-dashbtn-border flex ">
             <div className="w-[185px] mt-[25px] ml-[40px] ">
