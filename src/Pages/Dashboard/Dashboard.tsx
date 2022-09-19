@@ -10,7 +10,7 @@ import Path2 from "../../../src/Assets/Images/Path2.svg";
 
 const Dashboard = () => {
   return (
-    <div className="w-screen h-screen  font-inter">
+    <div className="w-full h-[full] font-inter">
       <NavBar />
       <div className="mt-[90px] w-full h-full flex justify-center">
         <div className="w-[1177px] min-w-[1177px] h-[205px]">
