@@ -12,7 +12,7 @@ const NavBar = () => {
         <img src={logo} />
       </div>
       <div className="w-[132px] h-full">
-        <div className="dropdown relative w-full h-full flex items-center justify-center font-bold ">
+        <div className="dropdown navbar-dropdown relative w-full h-full flex items-center justify-center font-bold ">
           <button
             className="dropdown-toggle w-full h-full bg-user-main text-white hover:bg-user-main-hover hover:cursor-pointer focus:bg-user-main-hover active:bg-user-main-hover  active:text-white transition duration-150
           ease-in-out flex items-center whitespace-nowrap"
@@ -66,7 +66,7 @@ const NavBar = () => {
       </div>
       <div className="w-full h-full flex justify-end items-center ">
         <div className="w-[58px] h-[54px] mr-[13px] flex justify-center items-center">
-          <div className="">
+          <div className="dropdown-menu-right">
             <div className="dropdown relative text-[13px] h-[54px] font-bold">
               <button
                 className="dropdown-toggle h-full bg-user-main text-white transition duration-150 ease-in-out
@@ -103,6 +103,7 @@ const NavBar = () => {
                 className=" 
                 w-[195px] 
           dropdown-menu
+          dropdown-right 
           absolute
           hidden
           bg-user-main
@@ -172,8 +173,8 @@ const NavBar = () => {
           </div>
         </div>
         <div className="w-[58px] h-[54px] mr-[18px]">
-          <div className="">
-            <div className="w-full h-[54px] dropdown relative flex justify-center items-center">
+          <div className="dropdown-menu-right">
+            <div className="w-full h-[54px] dropdown  relative flex justify-center items-center">
               <button
                 className="
           dropdown-toggle
@@ -219,7 +220,7 @@ const NavBar = () => {
               </button>
               <ul
                 className="absolute w-[195px]
-          dropdown-menu
+          dropdown-menu 
           min-w-max
           hidden
           bg-user-main

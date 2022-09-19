@@ -28,3 +28,12 @@ a {
     background: black;
   }
 }
+
+.navbar-dropdown .dropdown-menu {
+  inset: -3px auto auto auto !important;
+}
+
+.dropdown-menu-right .dropdown-menu{
+
+  inset: -3px 0px auto auto !important;
+}
