@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../../Components/Nav/NavBar";
 import "font-awesome/css/font-awesome.min.css";
 import { Button } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
 
 import main_picture from "../../../src/Assets/Images/dash_picture.png";
 import vector from "../../../src/Assets/Images/Vector.svg";
@@ -9,9 +10,11 @@ import Path1 from "../../../src/Assets/Images/Path1.svg";
 import Path2 from "../../../src/Assets/Images/Path2.svg";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   return (
-    <div className="w-full h-[full] min-h-screen bg-white font-inter">
+    <div className="w-full h-full min-h-screen bg-white font-inter">
       <NavBar />
+
       <div className="mt-[90px] w-full h-full flex justify-center">
         <div className="w-[1177px] min-w-[1177px] h-[205px]">
           <div className="w-full h-full bg-user-dashbtn-bg border-[1px] rounded-[10px] border-user-dashbtn-border flex ">
@@ -72,7 +75,12 @@ const Dashboard = () => {
                   Compare the differece between free and paid plans.
                 </div>
 
-                <Button className="absolute mt-[60px] rounded-[6px] w-[119px] h-[48px]  bg-black mr-[16px] flex items-center justify-center">
+                <Button
+                  onClick={() => {
+                    navigate("/subscription");
+                  }}
+                  className="absolute mt-[60px] rounded-[6px] w-[119px] h-[48px]  bg-black mr-[16px] flex items-center justify-center"
+                >
                   View
                 </Button>
               </div>

@@ -1,5 +1,13 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { redirect } from "react-router-dom";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+import { login } from "../../Slices/auth";
+import { clearMessage } from "../../Slices/message";
+
 import { Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import Icfb_logo from "../../../src/Assets/Images/ic_fb_logo.svg";
@@ -7,9 +15,43 @@ import { Input } from "@material-tailwind/react";
 import "font-awesome/css/font-awesome.min.css";
 import Icgoogle_logo from "../../../src/Assets/Images/ic_google_logo.svg";
 
-const SignIn = () => {
+const SignIn = (props: any) => {
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { isLoggedIn } = useSelector((state: any) => state.auth);
+  const { message } = useSelector((state: any) => state.message);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required("This field is requried!"),
+    password: Yup.string().required("This field is requried!"),
+  });
+
+  const handleLogin = (formValue: any) => {
+    const { email, password } = formValue;
+    setLoading(true);
+
+    // dispatch(login({ email, password }))
+    //   .unwrap()
+    //   .then(() => {
+    //     props.history.psuh("/profile");
+    //     window.location.reload();
+    //   })
+    //   .catch(() => {
+    //     setLoading(false);
+    //   });
+  };
+  if (isLoggedIn) {
+    // return <Redirect to="/profile" />;
+  }
   return (
     <div className="w-[457px] h-[445px] bg-white p-[32px] font-inter">
       <div className=" font-[700] text-[24px] leading-[32px] text-user-text mb-[32px]">
@@ -36,6 +78,10 @@ const SignIn = () => {
         </div>
         <div className="h-[1px] w-full bg-user-border"></div>
       </div>
+      {/* <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+      ></Formik> */}
       <div className="mb-[24px]">
         <Input
           size="lg"
@@ -45,6 +91,7 @@ const SignIn = () => {
       </div>
       <div className="relative">
         <Input
+          name="password"
           type={!show ? "password" : ""}
           size="lg"
           className="font-inter text-user-text h-[48px] text-[14px] font-[500]"
