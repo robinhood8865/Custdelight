@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
 
 import { register } from "../../Slices/auth";
 import { clearMessage } from "../../Slices/message";
@@ -45,15 +44,6 @@ const SignUp = () => {
     email: "",
     password: "",
   };
-
-  const validationSchema = Yup.object().shape({
-    firstname: Yup.string().required("This is field is requried!"),
-    lastname: Yup.string().required("This is field is requried!"),
-    email: Yup.string()
-      .email("This is not a valid email.")
-      .required("This is field is requried!"),
-    password: Yup.string().required("This is field is requried!"),
-  });
 
   const handleRegister = (formValue: IRegister) => {
     const { firstname, lastname, email, password } = formValue;

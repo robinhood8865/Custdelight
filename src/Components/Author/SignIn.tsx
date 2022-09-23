@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { redirect } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
 
 import { login } from "../../Slices/auth";
 import { clearMessage } from "../../Slices/message";
@@ -26,14 +25,6 @@ const SignIn = (props: any) => {
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
-  const initialValues = {
-    email: "",
-    password: "",
-  };
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().required("This field is requried!"),
-    password: Yup.string().required("This field is requried!"),
-  });
 
   const handleLogin = (formValue: any) => {
     const { email, password } = formValue;
