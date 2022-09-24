@@ -1,10 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
 
-import { register } from "../../Slices/auth";
-import { clearMessage } from "../../Slices/message";
+// import { register } from "../../Slices/auth";
+// import { clearMessage } from "../../Slices/message";
 
 import { Button } from "@material-tailwind/react";
 import Icfb_logo from "../../../src/Assets/Images/ic_fb_logo.svg";
@@ -12,52 +11,48 @@ import Icgoogle_logo from "../../../src/Assets/Images/ic_google_logo.svg";
 import { Input, Checkbox } from "@material-tailwind/react";
 import "font-awesome/css/font-awesome.min.css";
 
-interface IRegister {
-  firstname: string;
-  lastname: string;
-  email: string;
-  password: string;
-}
+// interface IRegister {
+//   firstname: string;
+//   lastname: string;
+//   email: string;
+//   password: string;
+// }
 
-interface IAuthState {
-  isLoggedIn: boolean;
-  user: IRegister | null;
-}
-
-const CustomInputComponent = (props: any) => (
-  <input className="my-custom-input" type="text" {...props} />
-);
+// interface IAuthState {
+//   isLoggedIn: boolean;
+//   user: IRegister | null;
+// }
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
   // const [successful, setSuccessful] = useState(false);
   // const [message] = useSelector((state: any) => state.message);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(clearMessage());
+  // }, [dispatch]);
 
-  const initialValues = {
-    firstname: "",
-    lastname: "",
-    email: "",
-    password: "",
-  };
+  // const initialValues = {
+  //   firstname: "",
+  //   lastname: "",
+  //   email: "",
+  //   password: "",
+  // };
 
-  const handleRegister = (formValue: IRegister) => {
-    const { firstname, lastname, email, password } = formValue;
-    // setSuccessful(false);
-    const data: IRegister = { firstname, lastname, email, password };
-    // dispatch(register(data))
-    //   .unwrap()
-    //   .thne(() => {
-    //     setSuccessful(true);
-    //   })
-    //   .catch(() => {
-    //     setSuccessful(false);
-    //   });
-  };
+  // const handleRegister = (formValue: IRegister) => {
+  //   const { firstname, lastname, email, password } = formValue;
+  //   // setSuccessful(false);
+  //   const data: IRegister = { firstname, lastname, email, password };
+  //   // dispatch(register(data))
+  //   //   .unwrap()
+  //   //   .thne(() => {
+  //   //     setSuccessful(true);
+  //   //   })
+  //   //   .catch(() => {
+  //   //     setSuccessful(false);
+  //   //   });
+  // };
 
   // console.log(document.getElementsByName("firstname"));
 
@@ -69,7 +64,7 @@ const SignUp = () => {
       <div className="text-[24px] leading-[32px] text-user-text mb-[12px] flex">
         <Button className="rounded-[6px] w-full h-[48px] bg-user-light-blue mr-[16px] flex items-center">
           <div className="">
-            <img src={Icgoogle_logo} />
+            <img src={Icgoogle_logo} alt="log" />
           </div>
 
           <div className="font-[500] normal-case w-full text-[14px] leading-[17px] flex justify-center">
@@ -77,7 +72,7 @@ const SignUp = () => {
           </div>
         </Button>
         <div className="hover:cursor-pointer w-[59px] h-[48px] bg-white border-user-border border-[1px] rounded-[6px] flex items-center justify-center">
-          <img src={Icfb_logo} />
+          <img src={Icfb_logo} alt="logo" />
         </div>
       </div>
       <div className="h-[38px] flex items-center justify-between mb-[24px]">

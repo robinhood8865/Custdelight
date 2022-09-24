@@ -1,11 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { redirect } from "react-router-dom";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-
-import { login } from "../../Slices/auth";
-import { clearMessage } from "../../Slices/message";
+import { useState } from "react";
 
 import { Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
@@ -16,33 +10,32 @@ import Icgoogle_logo from "../../../src/Assets/Images/ic_google_logo.svg";
 
 const SignIn = (props: any) => {
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const { isLoggedIn } = useSelector((state: any) => state.auth);
-  const { message } = useSelector((state: any) => state.message);
+  // const [loading, setLoading] = useState(false);
+  // const { isLoggedIn } = useSelector((state: any) => state.auth);
+  // const { message } = useSelector((state: any) => state.message);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(clearMessage());
+  // }, [dispatch]);
 
-  const handleLogin = (formValue: any) => {
-    const { email, password } = formValue;
-    setLoading(true);
+  // const handleLogin = (formValue: any) => {
+  //   const { email, password } = formValue;
 
-    // dispatch(login({ email, password }))
-    //   .unwrap()
-    //   .then(() => {
-    //     props.history.psuh("/profile");
-    //     window.location.reload();
-    //   })
-    //   .catch(() => {
-    //     setLoading(false);
-    //   });
-  };
-  if (isLoggedIn) {
-    // return <Redirect to="/profile" />;
-  }
+  //   // dispatch(login({ email, password }))
+  //   //   .unwrap()
+  //   //   .then(() => {
+  //   //     props.history.psuh("/profile");
+  //   //     window.location.reload();
+  //   //   })
+  //   //   .catch(() => {
+  //   //     setLoading(false);
+  //   //   });
+  // };
+  // if (isLoggedIn) {
+  //   // return <Redirect to="/profile" />;
+  // }
   return (
     <div className="w-[457px] h-[445px] bg-white p-[32px] font-inter">
       <div className=" font-[700] text-[24px] leading-[32px] text-user-text mb-[32px]">
@@ -51,7 +44,7 @@ const SignIn = (props: any) => {
       <div className="text-[24px] leading-[32px] text-user-text mb-[12px] flex">
         <Button className="rounded-[6px] w-full h-[48px] bg-user-light-blue mr-[16px] flex items-center">
           <div className="">
-            <img src={Icgoogle_logo} />
+            <img src={Icgoogle_logo} alt="logo" />
           </div>
 
           <div className="font-[500] normal-case w-full text-[14px] leading-[17px] flex justify-center">
@@ -59,7 +52,7 @@ const SignIn = (props: any) => {
           </div>
         </Button>
         <div className="hover:cursor-pointer w-[59px] h-[48px] bg-white border-user-border border-[1px] rounded-[6px] flex items-center justify-center">
-          <img src={Icfb_logo} />
+          <img src={Icfb_logo} alt="logo" />
         </div>
       </div>
       <div className="h-[38px] flex items-center justify-between mb-[24px]">

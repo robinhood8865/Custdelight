@@ -1,4 +1,5 @@
 import Feature from "./Feature";
+import { Button } from "@material-tailwind/react";
 const Plan = (props: any) => {
   return (
     <div>
@@ -38,11 +39,11 @@ const Plan = (props: any) => {
             <Feature />
           </div>
           <div className="mt-[32 px]">
-            <button className="w-full h-[52px] text-[16px] leading-[20px] font-[400] border-[#EAEAEA] active:bg-user-main border-[1px] active:font-bold active:text-white">
+            <Button className="rounded-[8px] w-full h-[52px] text-[16px] leading-[20px] border-[#EAEAEA] bg-white border-[1px] font-[400] text-[#ADA7A7]">
               {props.selected.toString() === "true"
                 ? "Currnet Plan"
                 : "Select Plan"}
-            </button>
+            </Button>
           </div>
         </div>
       </div>

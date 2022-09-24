@@ -1,10 +1,10 @@
 import React from "react";
-import { Button } from "@material-tailwind/react";
+// import { Button } from "@material-tailwind/react";
 import CustDeligth_logo from "../../src/Assets/Images/white_logo_transparent_background.svg";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-import SignIn from "../Components/Author/SignIn";
-import SignUp from "../Components/Author/SignUp";
+// import SignIn from "../Components/Author/SignIn";
+// import SignUp from "../Components/Author/SignUp";
 
 const Author = () => {
   const location = useLocation();
@@ -14,7 +14,7 @@ const Author = () => {
         <div className="h-full bg-user-main flex items-center justify-center">
           <div className="w-[320px] h-[249px]  ">
             <div></div>
-            <img src={CustDeligth_logo} />
+            <img src={CustDeligth_logo} alt="logofile" />
           </div>
           <div className="text-white absolute bottom-[67px] flex">
             <div>Having troubles?</div>

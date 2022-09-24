@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "../Components/Nav/NavBar";
 import "font-awesome/css/font-awesome.min.css";
-import { Button } from "@material-tailwind/react";
 
 // import main_picture from "../../../src/Assets/Images/dash_picture.png";
 // import vector from "../../../src/Assets/Images/Vector.svg";
