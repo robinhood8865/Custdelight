@@ -85,12 +85,17 @@ const SignUp = () => {
 
       <form>
         <div className="mb-[24px]">
-          <Input name="firstname" placeholder="first name" />
+          <Input
+            name="email"
+            size="lg"
+            className="font-inter text-user-text h-[48px] w-full text- text-[14px]  font-[500]"
+            label="Email"
+          />
         </div>
         <div className="mb-[24px] flex w-full flex-auto">
           <div className="mr-[15px] [&>div]:min-w-[100px]">
             <Input
-              name="lastname"
+              name="firstname"
               size="lg"
               className="font-inter text-user-text h-[48px] w-full text- text-[14px]  font-[500]"
               label="First name"
@@ -99,7 +104,7 @@ const SignUp = () => {
 
           <div className="min-w-[100px] [&>div]:min-w-[100px]">
             <Input
-              name="email"
+              name="lastname"
               size="lg"
               className="font-inter text-user-text h-[48px] text-[14px]  font-[500] "
               label="Last name"
