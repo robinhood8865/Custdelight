@@ -19,13 +19,13 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        {/* <Route path="/" element={<Main />} /> */}
 
         <Route path="/" element={<Author />}>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
         <Route path="/subscription" element={<Subscription />} />
+        <Route path="/main" element={<Main />} />
       </Routes>
     </BrowserRouter>
   );

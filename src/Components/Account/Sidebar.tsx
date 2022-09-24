@@ -5,13 +5,13 @@ const Sidebar = () => {
     <div className="h-full min-h-[1000px] w-[200px] border-user-border border-[1px]">
       <div className="mt-[82px] h-[full]"></div>
       <div className="flex justify-center mb-[14px]">
-        <Button name="My Profile" />
+        <Button name="Modules" />
       </div>
       <div className="flex justify-center mb-[14px]">
-        <Button name="Billing" />
+        <Button name="Theme" />
       </div>
       <div className="flex justify-center mb-[14px]">
-        <Button name="Users" />
+        <Button name="Users " />
       </div>
       <div className="flex justify-center mb-[14px]">
         <Button name="Settings" />

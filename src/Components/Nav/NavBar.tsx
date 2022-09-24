@@ -4,13 +4,18 @@ import tabler_help from "../../../src/Assets/Images/tabler_help.svg";
 import tabler_account from "../../../src/Assets/Images/tabler_account.svg";
 import { Link } from "react-router-dom";
 import "tw-elements";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   return (
     <div className="relative w-full h-[54px] bg-user-main flex">
-      <div className="w-[60px] h-full flex items-center justify-center hover:bg-user-main-hover hover:cursor-pointer">
+      <Link
+        to="/"
+        className="w-[60px] h-full flex items-center justify-center hover:bg-user-main-hover hover:cursor-pointer"
+      >
         <img src={logo} />
-      </div>
+      </Link>
       <div className="w-[132px] h-full">
         <div className="dropdown navbar-dropdown relative w-full h-full flex items-center justify-center font-bold ">
           <button

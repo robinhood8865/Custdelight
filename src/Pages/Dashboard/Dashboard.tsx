@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../../Components/Nav/NavBar";
 import "font-awesome/css/font-awesome.min.css";
 import { Button } from "@material-tailwind/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import main_picture from "../../../src/Assets/Images/dash_picture.png";
 import vector from "../../../src/Assets/Images/Vector.svg";
@@ -19,13 +19,18 @@ const Dashboard = () => {
         <div className="w-[1177px] min-w-[1177px] h-[205px]">
           <div className="w-full h-full bg-user-dashbtn-bg border-[1px] rounded-[10px] border-user-dashbtn-border flex ">
             <div className="w-[185px] mt-[25px] ml-[40px] ">
-              <div className="w-full h-[135px] bg-gradient-to-b from-user-dash-grad1 to-user-dash-grad2 rounded-[10px] flex items-center justify-center">
+              <Button
+                onClick={() => {
+                  navigate("/main");
+                }}
+                className="w-full h-[135px] bg-gradient-to-b from-user-dash-grad1 to-user-dash-grad2 rounded-[10px] flex items-center justify-center"
+              >
                 <div className="w-[60px] h-[60px] rounded-full bg-[#FFA800] flex items-center justify-center">
                   <div>
                     <img src={vector} alt="" />
                   </div>
                 </div>
-              </div>
+              </Button>
               <div className="w-full flex justify-center font-bold text-[14px] leading-[17px] mt-[11px]">
                 Create your first wediget
               </div>

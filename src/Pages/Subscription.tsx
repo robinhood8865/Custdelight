@@ -19,18 +19,18 @@ const Subscription = () => {
 
       <div className="mt-[32px] ml-[84px] h-full w-[1220px] ">
         <div>
-          <div className="text-[24px] leading-[29px] font-bold mb-[10px]">
+          <div className="text-[24px] leading-[29px] font-bold mb-[10px] text-black">
             Pricing
           </div>
           <div className="text-[16px] leading-[20px] font-[400] text-[#A0A0A0] mb-[25px]">
             Select the best plan that suits your businesds
           </div>
-          <div className="h-[24px] w-[310px] flex justify-between text-[16px] leading-[20px] font-[400]">
-            <div>Billed Monthly</div>
+          <div className="h-[24px] text-black w-[310px] flex justify-between text-[16px] leading-[20px] font-[400]">
+            <div className="text-black">Billed Monthly</div>
             <div>
               <Switch color="green" width={20} height={100} />
             </div>
-            <div>Billed Annually</div>
+            <div className="text-black">Billed Annually</div>
           </div>
         </div>
 
