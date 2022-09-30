@@ -6,7 +6,7 @@ const Sidebar = (props: any) => {
   };
 
   return (
-    <div className="h-full w-[200px] border-user-border border-[1px]">
+    <div className="h-full w-[200px] border-user-border border-[1px] bg-white">
       <div className="mt-[82px] h-[full]"></div>
       <div className="flex justify-center mb-[14px]">
         <ItemButton

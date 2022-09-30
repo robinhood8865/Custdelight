@@ -17,7 +17,7 @@ const Main = () => {
 
   console.log(index);
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen bg-white">
       <NavBar />
       <div className="flex justify-between">
         <div className="flex">
