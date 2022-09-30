@@ -1,5 +1,13 @@
 import React from "react";
+import { Component } from "react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+
+import { register } from "../../Services/auth.service";
+
 // import { useDispatch, useSelector } from "react-redux";
 
 // import { register } from "../../Slices/auth";
@@ -10,21 +18,37 @@ import Icfb_logo from "../../../src/Assets/Images/ic_fb_logo.svg";
 import Icgoogle_logo from "../../../src/Assets/Images/ic_google_logo.svg";
 import { Input, Checkbox } from "@material-tailwind/react";
 import "font-awesome/css/font-awesome.min.css";
+import toast from "react-hot-toast";
 
-// interface IRegister {
-//   firstname: string;
-//   lastname: string;
-//   email: string;
-//   password: string;
-// }
+interface IUser {
+  id?: any | null;
+  email: string;
+  firstname: string;
+  lastname: string;
+  password: string;
+  roles?: Array<string>;
+}
 
-// interface IAuthState {
-//   isLoggedIn: boolean;
-//   user: IRegister | null;
-// }
+const schema = yup.object().shape({
+  email: yup.string().required(),
+  firstname: yup.string().required(),
+  lastname: yup.string().required(),
+  password: yup.string().required(),
+});
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
   const [show, setShow] = useState(false);
+  const [agree, setAgree] = useState(false);
+  const [successful, setSuccessful] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const navigate = useNavigate();
+
+  const initialValues: IUser = {
+    email: "",
+    firstname: "",
+    lastname: "",
+    password: "",
+  };
   // const [successful, setSuccessful] = useState(false);
   // const [message] = useSelector((state: any) => state.message);
   // const dispatch = useDispatch();
@@ -40,19 +64,46 @@ const SignUp = () => {
   //   password: "",
   // };
 
-  // const handleRegister = (formValue: IRegister) => {
-  //   const { firstname, lastname, email, password } = formValue;
-  //   // setSuccessful(false);
-  //   const data: IRegister = { firstname, lastname, email, password };
-  //   // dispatch(register(data))
-  //   //   .unwrap()
-  //   //   .thne(() => {
-  //   //     setSuccessful(true);
-  //   //   })
-  //   //   .catch(() => {
-  //   //     setSuccessful(false);
-  //   //   });
-  // };
+  const handleRegister = (event: any) => {
+    const email = event.target.email.value;
+    const firstname = event.target.firstname.value;
+    const lastname = event.target.lastname.value;
+    const password = event.target.password.value;
+    const checkAgree = event.target.checkAgree.checked;
+    console.log(email, firstname, lastname, password, checkAgree);
+
+    register(firstname, lastname, email, password).then(
+      (response) => {
+        toast.success("successfully registered");
+        console.log(response);
+        localStorage.setItem("token", JSON.stringify(response.data));
+        setMessage(response.data.message);
+        setSuccessful(true);
+        navigate("/signin");
+      },
+      (error) => {
+        // console.log(error);
+        const resMessage = error.response.data.errors[0].msg;
+        setMessage(resMessage);
+        console.log(resMessage);
+        toast.error(resMessage);
+        setSuccessful(false);
+      }
+    );
+    event.preventDefault();
+
+    // const { firstname, lastname, email, password } = formValue;
+    // setSuccessful(false);
+    // const data: IRegister = { firstname, lastname, email, password };
+    // dispatch(register(data))
+    //   .unwrap()
+    //   .thne(() => {
+    //     setSuccessful(true);
+    //   })
+    //   .catch(() => {
+    //     setSuccessful(false);
+    //   });
+  };
 
   // console.log(document.getElementsByName("firstname"));
 
@@ -83,7 +134,7 @@ const SignUp = () => {
         <div className="h-[1px] w-full bg-user-border"></div>
       </div>
 
-      <form>
+      <form onSubmit={handleRegister}>
         <div className="mb-[24px]">
           <Input
             name="email"
@@ -152,13 +203,13 @@ const SignUp = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="3"
+                strokeWidth="3"
                 stroke="currentColor"
                 className="w-6 h-6"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"
                 />
               </svg>
@@ -169,6 +220,7 @@ const SignUp = () => {
           </div>
         </div>
         <Button
+          disabled={!agree}
           className="mt-[24px] rounded-[6px] w-full h-[48px] bg-user-main"
           type="submit"
         >
@@ -179,10 +231,13 @@ const SignUp = () => {
 
         <div className="flex justify-between mt-[18px]">
           <Checkbox
+            onClick={() => {
+              setAgree(!agree);
+            }}
+            name="checkAgree"
             className="checked:bg-user-check-bg  checked:border-user-check-bg checked:before:bg-user-check-bg"
-            defaultChecked
           />
-          <div className="hover:cursor-pointer text-[12px] font-[400] text-user-text-disable mt-[6px]">
+          <div className="text-[12px] font-[400] text-user-text-disable mt-[6px]">
             By clicking Create account, I agree that I have read and accepted
             the Terms of Use and Privacy Policy.
           </div>
