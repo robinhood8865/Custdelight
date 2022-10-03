@@ -6,7 +6,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 // import SignIn from "../Components/Author/SignIn";
 // import SignUp from "../Components/Author/SignUp";
 
-const Author = () => {
+const AuthorLayout = () => {
   const location = useLocation();
   return (
     <div className="relative w-screen h-screen min-h-[700px] min-w-[500px] grid grid-cols-3 ">
@@ -61,4 +61,4 @@ const Author = () => {
   );
 };
 
-export default Author;
+export default AuthorLayout;

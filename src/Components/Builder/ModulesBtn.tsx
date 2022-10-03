@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import Sparkle from "../../../src/Assets/Images/sparkle.svg";
 
-const SubBarBtn = (props: any) => {
+const ModulesBtn = (props: any) => {
   const [check, setCheck] = useState(false);
   return (
     <button
@@ -122,4 +122,4 @@ const SubBarBtn = (props: any) => {
   );
 };
 
-export default SubBarBtn;
+export default ModulesBtn;

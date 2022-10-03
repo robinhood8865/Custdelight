@@ -1,0 +1,6 @@
+export const WIGET_TABS = {
+  MODULES: "MODULES",
+  THEMES: "THEMES",
+  USERS: "USERS",
+  SETTINS: "SETTINS",
+};

@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemButton from "./ItemButton";
-const Sidebar = (props: any) => {
+import { useNavigate } from "react-router-dom";
+const SideBar = () => {
+  const navigate = useNavigate();
+  const [index, setIndex] = useState(0);
   const handleClickItemButton = (index: any) => {
-    props.setIndex(index);
+    setIndex(index);
   };
 
   return (
@@ -12,39 +15,43 @@ const Sidebar = (props: any) => {
         <ItemButton
           onCustomClick={() => {
             handleClickItemButton(0);
+            navigate("/builder/modules");
           }}
           name="Modules"
-          select={props.index === 0 ? 1 : 0}
+          select={index === 0 ? 1 : 0}
         />
       </div>
       <div className="flex justify-center mb-[14px]">
         <ItemButton
           onCustomClick={() => {
             handleClickItemButton(1);
+            navigate("/builder/theme");
           }}
           name="Theme"
-          select={props.index === 1 ? 1 : 0}
+          select={index === 1 ? 1 : 0}
         />
       </div>
       <div className="flex justify-center mb-[14px]">
         <ItemButton
           onCustomClick={() => {
             handleClickItemButton(2);
+            navigate("/builder/users");
           }}
           name="Users "
-          select={props.index === 2 ? 1 : 0}
+          select={index === 2 ? 1 : 0}
         />
       </div>
       <div className="flex justify-center mb-[14px]">
         <ItemButton
           onCustomClick={() => {
             handleClickItemButton(3);
+            navigate("/builder/settings");
           }}
           name="Settings"
-          select={props.index === 3 ? 1 : 0}
+          select={index === 3 ? 1 : 0}
         />
       </div>
     </div>
   );
 };
-export default Sidebar;
+export default SideBar;
