@@ -1,16 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import ModulesSidebar from "../../Components/Builder/ModulesSidebar";
 
-import SideBar from "../../Components/Builder/SideBar";
+import SideBar from "../../Components/Builder/SideBar/SideBar";
 import NavBar from "../../Components/Nav/NavBar";
-import Property from "../../Components/Builder/Property";
-import ThemeSidebar from "../../Components/Builder/ThemeSidebar";
-import SettingsSidebar from "../../Components/Builder/SettingsSidebar";
-import Widget from "../../Assets/Images/widget.svg";
-import SettingsGeneralSidebar from "../../Components/Builder/SettingsGeneralSidebar";
 
-const Main = () => {
+import Configration from "../../Components/Builder/Configration/Configration";
+import ThemeSidebar from "../../Components/Builder/SideBar/ThemeSidebar";
+import SettingsSidebar from "../../Components/Builder/SideBar/SettingsSidebar";
+import Widget from "../../Assets/Images/widget.svg";
+import SettingsGeneralSidebar from "../../Components/Builder/Configration/SettingsGeneralSidebar";
+import BuilderNavBar from "../../Components/Nav/BuilderNavBar";
+import ModulesSidebar from "../../Components/Builder/SideBar/ModulesSidebar";
+
+const Builder = () => {
   const [index, setIndex] = useState(0);
   const [settingType, setSettingType] = useState(0);
 
@@ -22,7 +24,7 @@ const Main = () => {
   console.log("setting", settingType);
   return (
     <div className="w-full h-screen bg-white">
-      <NavBar />
+      <BuilderNavBar />
       <div className="flex justify-between">
         <div className="flex">
           <SideBar />
@@ -44,10 +46,10 @@ const Main = () => {
             <img src={Widget} alt="" />
           </div>
         )}
-        <Property />
+        <Configration />
       </div>
     </div>
   );
 };
 
-export default Main;
+export default Builder;

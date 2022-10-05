@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import ModulesBtn from "../../Components/Builder/ModulesBtn";
-import CloseBtn from "../../Components/Builder/CloseBtn";
-import ModulesSidebar from "../../Components/Builder/ModulesSidebar";
+import ModulesBtn from "../../Components/Builder/Components/ModulesBtn";
+import CloseBtn from "../../Components/Builder/Components/CloseBtn";
 
 const Modules = (props: any) => {
   const { name } = props;

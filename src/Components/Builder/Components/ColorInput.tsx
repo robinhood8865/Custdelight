@@ -1,29 +1,22 @@
 import { useRef, useState } from "react";
 
-const EditInput = (props: any) => {
+const ColorInput = (props: any) => {
   const [visible, setVisible] = useState(false);
-  const inputObj: any = useRef(null);
+  const { name } = props;
+
   return (
     <div>
       <div className="text-[16px] font-bold leading-[20px] mb-[20px]">
-        {props.name}
+        {name}
       </div>
       <div className="relative flex w-full flex-wrap items-stretch mb-[26px]">
         <input
           type="text"
-          ref={inputObj}
-          // value="#812FBF"
           disabled={!visible}
           className="px-3 py-3 relative bg-white rounded-[8px] text-[14px] leading-[21px] font-[400] border-[#EAEAEA] border-[1px] shadow outline-none focus:outline-none focus:ring w-full pr-10 "
         />
         <span className="z-10 h-full  font-normal absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
-          <div
-            onClick={() => {
-              setVisible(!visible);
-              inputObj.current.focus();
-            }}
-            className="cursor-pointer w-full h-full flex items-center justify-center"
-          >
+          <div className="cursor-pointer w-full h-full flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -48,4 +41,4 @@ const EditInput = (props: any) => {
   );
 };
 
-export default EditInput;
+export default ColorInput;

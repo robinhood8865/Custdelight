@@ -1,20 +1,43 @@
-import { Button } from "@material-tailwind/react";
+import { useAppDispatch, useAppSelector } from "../../../App/hooks";
+import {
+  setMemberShip,
+  setVouchers,
+  setPayment,
+} from "../../../Slices/modulesSlice";
 import React, { useState } from "react";
 
-import Sparkle from "../../../src/Assets/Images/sparkle.svg";
-
 const ModulesBtn = (props: any) => {
-  const [check, setCheck] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const { name, visible, enable } = props;
+
   return (
     <button
       onClick={() => {
-        if (props.visible === true) setCheck(!check);
+        // if (enable === true) {
+        //   // console.log(enable, visible);
+        //   switch (name) {
+        //     case "Membership":
+        //       dispatch(setMemberShip(!visible));
+        //       break;
+        //     case "Vouchers":
+        //       dispatch(setVouchers(!visible));
+        //       break;
+        //     case "Payment":
+        //       dispatch(setPayment(!visible));
+        //       break;
+        //     default:
+        //       break;
+        //   }
+        // }
+
+        console.log(name);
       }}
       className="mb-[10px]"
     >
       <div
         className={`${
-          props.visible === true ? "bg-white" : "bg-user-border"
+          enable === true ? "bg-white" : "bg-user-border"
         } w-[280px] h-[100px] rounded-[10px] border-[1px] border-user-border `}
       >
         <div className="w-full h-full        flex justify-between items-center">
@@ -43,12 +66,41 @@ const ModulesBtn = (props: any) => {
               </svg>
             </div>
             <div className="mt-[8px] text-[12px] font-bold leading-[15px] text-black">
-              {props.name}
+              {name}
             </div>
           </div>
 
-          {props.visible && check && (
-            <div className="w-[40px] h-[40px] rounded-full border-[1px]  flex justify-center items-center mr-[22px] border-user-border bg-[#00B761]">
+          <div
+            onClick={() => {
+              if (enable === true) {
+                // console.log(enable, visible);
+                switch (name) {
+                  case "Membership":
+                    dispatch(setMemberShip(!visible));
+                    break;
+                  case "Vouchers":
+                    dispatch(setVouchers(!visible));
+                    break;
+                  case "Payment":
+                    dispatch(setPayment(!visible));
+                    break;
+                  default:
+                    break;
+                }
+              }
+            }}
+            className={`
+              ${
+                enable
+                  ? visible
+                    ? "bg-[#00B761]"
+                    : "bg-[#FFA800]"
+                  : "bg-[#5A5A5A]"
+              }
+              w-[40px] h-[40px] rounded-full border-[1px]  flex justify-center items-center mr-[22px] border-user-border 
+              `}
+          >
+            {enable && visible && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -66,10 +118,8 @@ const ModulesBtn = (props: any) => {
                   />
                 </g>
               </svg>
-            </div>
-          )}
-          {props.visible && !check && (
-            <div className="w-[40px] h-[40px] rounded-full border-[1px]  flex justify-center items-center mr-[22px] border-user-border bg-[#FFA800]">
+            )}
+            {enable && !visible && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="34"
@@ -90,10 +140,8 @@ const ModulesBtn = (props: any) => {
                   strokeLinecap="round"
                 />
               </svg>
-            </div>
-          )}
-          {!props.visible && (
-            <div className="w-[40px] h-[40px] rounded-full border-[1px]  flex justify-center items-center mr-[22px] border-user-border bg-[#5A5A5A]">
+            )}
+            {!enable && !visible && (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="34"
@@ -114,8 +162,8 @@ const ModulesBtn = (props: any) => {
                   strokeLinecap="round"
                 />
               </svg>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </button>

@@ -1,10 +1,24 @@
 import UserProp from "./UserProp";
-import CloseBtn from "./CloseBtn";
 import Membershiptypeprop from "./Membershiptypeprop";
 import Membershipsettingsprop from "./Membershipsettingsprop copy";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ConfigCloseBtn from "../Components/ConfigCloseBtn";
+import { useLocation } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../App/hooks";
+import { useDispatch } from "react-redux";
 
-const Property = () => {
+const Configration = () => {
+  const dispatch = useDispatch();
+  const moduleIndex = useAppSelector((state) => state.modules.moduleIndex);
+
+  const location = useLocation();
+  const getCurrentPage = (url: string): boolean => {
+    return location.pathname.toLowerCase().startsWith("/builder/" + url);
+  };
+  // useEffect(() => {
+  //   setShowConfig(true);
+  // }, []);
+  const [showConfig, setShowConfig] = useState(true);
   const [type, setType] = useState(0);
   return (
     <div className="h-full min-h-screen w-[340px] bg-white text-black border-[1px]  ">
@@ -12,7 +26,7 @@ const Property = () => {
         <div className="font-bold text-[16px] leading-[20px] ">
           Configuration
         </div>
-        <CloseBtn />
+        <ConfigCloseBtn />
       </div>
       <div className=" w-full border-t-[1px] border-[#DFDFDF] pl-[27px] pr-[23px] pt-[25px]">
         <div className=" w-full h-full mb-[35px] ">
@@ -120,4 +134,4 @@ const Property = () => {
   );
 };
 
-export default Property;
+export default Configration;

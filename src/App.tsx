@@ -12,7 +12,7 @@ import Builder from "./Pages/Builder/Builder";
 
 // Redux
 import { Provider } from "react-redux";
-import store from ".//App";
+
 import { Toaster } from "react-hot-toast";
 import AuthorLayout from "./Layouts/AuthorLayout";
 import BuilderLayout from "./Layouts/BuilderLayout";
@@ -20,12 +20,13 @@ import Modules from "./Pages/Builder/Modules";
 import Theme from "./Pages/Builder/Theme";
 import Settings from "./Pages/Builder/Settings";
 import Users from "./Pages/Builder/Users";
+import store from "./App/store";
 
 // import ToastProvider from "./Components/Toast/ToastProvider";
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Dashboard />} />
@@ -44,7 +45,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" containerStyle={{ fontSize: 12 }} />
-    </>
+    </Provider>
   );
 }
 

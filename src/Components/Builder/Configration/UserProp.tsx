@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Airtable from "./Airtable";
-import ChkBtn from "./ChkBtn";
+import Airtable from "../Components/Airtable";
+import ChkBtn from "../Components/ChkBtn";
+
 // import CloseBtn from "./CloseBtn";
 // import ModulesBtn from "./ModulesBtn";
 

@@ -1,8 +1,8 @@
 // import React, { useState } from "react";
 // import ModulesBtn from "./ModulesBtn";
 // import EditInput from "./EditInput";
-import CloseBtn from "./CloseBtn";
-import SettingsBtn from "./SettingsBtn";
+import CloseBtn from "../Components/CloseBtn";
+import SettingsBtn from "../Components/SettingsBtn";
 
 const SettingsGeneralSidebar = () => {
   return (

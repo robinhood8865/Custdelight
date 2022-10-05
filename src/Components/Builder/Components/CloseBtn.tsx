@@ -1,6 +1,12 @@
-const CloseBtn = () => {
+const CloseBtn = (props: any) => {
+  const { setShowSubbar } = props;
   return (
-    <div className="bg-white cursor-pointer w-[40px] h-[40px] rounded-full border-[1px] border-[#DFDFDF] flex items-center justify-center">
+    <div
+      onClick={() => {
+        setShowSubbar(false);
+      }}
+      className="bg-white cursor-pointer w-[40px] h-[40px] rounded-full border-[1px] border-[#DFDFDF] flex items-center justify-center"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
