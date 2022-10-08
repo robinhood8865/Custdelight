@@ -3,8 +3,11 @@ import {
   setMemberShip,
   setVouchers,
   setPayment,
-} from "../../../Slices/modulesSlice";
+  setModuleIndex,
+} from "../../../Slices/widgetSlice";
+
 import React, { useState } from "react";
+import { Button } from "@material-tailwind/react";
 
 const ModulesBtn = (props: any) => {
   const dispatch = useAppDispatch();
@@ -12,35 +15,31 @@ const ModulesBtn = (props: any) => {
   const { name, visible, enable } = props;
 
   return (
-    <button
-      onClick={() => {
-        // if (enable === true) {
-        //   // console.log(enable, visible);
-        //   switch (name) {
-        //     case "Membership":
-        //       dispatch(setMemberShip(!visible));
-        //       break;
-        //     case "Vouchers":
-        //       dispatch(setVouchers(!visible));
-        //       break;
-        //     case "Payment":
-        //       dispatch(setPayment(!visible));
-        //       break;
-        //     default:
-        //       break;
-        //   }
-        // }
-
-        console.log(name);
-      }}
-      className="mb-[10px]"
-    >
-      <div
+    <div className="mb-[10px]">
+      <Button
+        onClick={() => {
+          if (enable === true) {
+            // console.log(enable, visible);
+            switch (name) {
+              case "Membership":
+                dispatch(setModuleIndex(1));
+                break;
+              case "Vouchers":
+                dispatch(setModuleIndex(2));
+                break;
+              case "Payment":
+                dispatch(setModuleIndex(3));
+                break;
+              default:
+                break;
+            }
+          }
+        }}
         className={`${
           enable === true ? "bg-white" : "bg-user-border"
-        } w-[280px] h-[100px] rounded-[10px] border-[1px] border-user-border `}
+        } w-[280px] h-[100px] rounded-[10px] p-0 border-[1px] border-user-border `}
       >
-        <div className="w-full h-full        flex justify-between items-center">
+        <div className="w-full h-full flex justify-between items-center">
           <div className="w-[136px] h-full">
             <div className="w-full flex justify-center mt-[30px]">
               <svg
@@ -50,7 +49,7 @@ const ModulesBtn = (props: any) => {
                 viewBox="0 0 20 20"
                 fill="none"
               >
-                <g clip-path="url(#clip0_69_924)">
+                <g clipPath="url(#clip0_69_924)">
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -65,7 +64,7 @@ const ModulesBtn = (props: any) => {
                 </defs>
               </svg>
             </div>
-            <div className="mt-[8px] text-[12px] font-bold leading-[15px] text-black">
+            <div className="normal-case mt-[8px] text-[12px] font-bold leading-[15px] text-black">
               {name}
             </div>
           </div>
@@ -165,8 +164,8 @@ const ModulesBtn = (props: any) => {
             )}
           </div>
         </div>
-      </div>
-    </button>
+      </Button>
+    </div>
   );
 };
 

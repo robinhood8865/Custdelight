@@ -72,12 +72,12 @@ const SignIn = (props: any) => {
         Sign in to Custdelight
       </div>
       <div className="text-[24px] leading-[32px] text-user-text mb-[12px] flex">
-        <Button className="rounded-[6px] w-full h-[48px] bg-user-light-blue mr-[16px] flex items-center">
+        <Button className=" rounded-[6px] w-full h-[48px] bg-user-light-blue mr-[16px] flex items-center">
           <div className="">
             <img src={Icgoogle_logo} alt="logo" />
           </div>
 
-          <div className="font-[500] normal-case w-full text-[14px] leading-[17px] flex justify-center">
+          <div className=" font-[500] normal-case w-full text-[14px] leading-[17px] flex justify-center">
             <div>Sign In with Google</div>
           </div>
         </Button>

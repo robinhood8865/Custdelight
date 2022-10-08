@@ -1,16 +1,11 @@
 import React, { Fragment, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
 const Widget = () => {
   const dispatch = useAppDispatch();
-  const visibleMemberShip = useAppSelector(
-    (state) => state.modules.visibleMemberShip
-  );
+  const widget = useAppSelector((state) => state.widget);
+  const { visibleMemberShip, visibleVouchers, visiblePayment } = widget;
 
-  const visibleVouchers = useAppSelector(
-    (state) => state.modules.visibleVouchers
-  );
   return (
     <div className="p-[40px] min-w-[500px]">
       <div className="relative w-[400px] h-[601px] bg-white rounded-md shadow-[0_20px_30px_0_rgba(28,040,50,0.2)] tracking-[-0.5px]">

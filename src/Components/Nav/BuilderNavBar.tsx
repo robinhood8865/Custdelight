@@ -10,7 +10,7 @@ import { Button } from "@material-tailwind/react";
 const BuilderNavBar = () => {
   const navigate = useNavigate();
   return (
-    <div className="absolute w-full h-[54px] bg-user-main flex">
+    <div className="absolute w-full min-w-[1405px] h-[54px] bg-user-main flex">
       <Link to="/" className="w-[70px] h-full  hover:cursor-pointer">
         <svg
           className="mt-[13px] mx-[19px] "

@@ -8,7 +8,7 @@ import Configration from "../../Components/Builder/Configration/Configration";
 import ThemeSidebar from "../../Components/Builder/SideBar/ThemeSidebar";
 import SettingsSidebar from "../../Components/Builder/SideBar/SettingsSidebar";
 import Widget from "../../Assets/Images/widget.svg";
-import SettingsGeneralSidebar from "../../Components/Builder/Configration/SettingsGeneralSidebar";
+import SettingsGeneralSidebar from "../../Components/Builder/SideBar/SettingsGeneralSidebar";
 import BuilderNavBar from "../../Components/Nav/BuilderNavBar";
 import ModulesSidebar from "../../Components/Builder/SideBar/ModulesSidebar";
 

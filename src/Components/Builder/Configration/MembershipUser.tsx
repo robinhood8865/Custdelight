@@ -1,3 +1,4 @@
+import { Switch } from "@material-tailwind/react";
 import { useState } from "react";
 import Airtable from "../Components/Airtable";
 import ChkBtn from "../Components/ChkBtn";
@@ -5,7 +6,7 @@ import ChkBtn from "../Components/ChkBtn";
 // import CloseBtn from "./CloseBtn";
 // import ModulesBtn from "./ModulesBtn";
 
-const UserProp = () => {
+const MembershipUser = () => {
   return (
     <div className=" w-full h-full  ">
       <div className="mt-[34px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
@@ -27,4 +28,4 @@ const UserProp = () => {
   );
 };
 
-export default UserProp;
+export default MembershipUser;

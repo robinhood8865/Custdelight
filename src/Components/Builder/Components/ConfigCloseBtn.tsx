@@ -1,9 +1,9 @@
 const ConfigCloseBtn = (props: any) => {
-  const { setShowSubbar } = props;
+  const { setShowConfig } = props;
   return (
     <div
       onClick={() => {
-        setShowSubbar(false);
+        setShowConfig(false);
       }}
       className="bg-white cursor-pointer w-[40px] h-[40px] rounded-full border-[1px] border-[#DFDFDF] flex items-center justify-center"
     >

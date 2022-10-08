@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../Slices/auth";
 import messageReducer from "../Slices/message";
-import modulesReducer from "../Slices/modulesSlice";
+import moduleReducer from "../Slices/moduleSlice";
+import voucherReducer from "../Slices/voucherSlice";
+import widgetReducer from "../Slices/widgetSlice";
 
 const reducer = {
   auth: authReducer,
   message: messageReducer,
-  modules: modulesReducer,
+  module: moduleReducer,
+  voucher: voucherReducer,
+  widget: widgetReducer,
 };
 
 const store = configureStore({

@@ -15,7 +15,7 @@ const ItemButton = (props: any) => {
           props.select === 1
             ? "bg-user-side-btn-hover text-white"
             : "bg-user-side-btn text-black"
-        } border-user-border w-[100px] h-[100px] rounded-[10px] border-[1px]`}
+        } border-user-border w-[100px] h-[100px] normal-case rounded-[10px] border-[1px]`}
       >
         <div className="w-full flex justify-center">
           <svg
@@ -25,7 +25,7 @@ const ItemButton = (props: any) => {
             viewBox="0 0 20 20"
             fill="none"
           >
-            <g clip-path="url(#clip0_69_924)">
+            <g clipPath="url(#clip0_69_924)">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"

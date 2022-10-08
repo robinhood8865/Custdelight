@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface ModulesState {
+export interface WidgetState {
   visibleMemberShip: boolean;
   visibleVouchers: boolean;
   visiblePayment: boolean;
   moduleIndex: number;
 }
 
-const initialState: ModulesState = {
+const initialState: WidgetState = {
   visibleMemberShip: false,
   visibleVouchers: false,
   visiblePayment: false,
   moduleIndex: 1,
 };
 
-const ModulesSlice = createSlice({
-  name: "Modules",
+const WidgetSlice = createSlice({
+  name: "Widget",
   initialState,
   reducers: {
     setMemberShip: (state, action: PayloadAction<boolean>) => {
@@ -33,7 +33,8 @@ const ModulesSlice = createSlice({
   },
 });
 
-const { reducer, actions } = ModulesSlice;
+const { reducer, actions } = WidgetSlice;
 
-export const { setMemberShip, setVouchers, setPayment } = actions;
+export const { setMemberShip, setVouchers, setPayment, setModuleIndex } =
+  actions;
 export default reducer;

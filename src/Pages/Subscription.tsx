@@ -14,10 +14,10 @@ import { Switch } from "@material-tailwind/react";
 
 const Subscription = () => {
   return (
-    <div className="w-full h-full min-h-screen bg-white font-inter">
+    <div className="w-full h-full min-h-screen bg-white font-inter ">
       <NavBar />
 
-      <div className="mt-[32px] ml-[84px] h-full w-[1220px] ">
+      <div className="pt-[32px] pb-[70px] px-[84px] h-full w-[1420px] ">
         <div>
           <div className="text-[24px] leading-[29px] font-bold mb-[10px] text-black">
             Pricing
