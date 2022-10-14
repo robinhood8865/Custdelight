@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface VoucherState {
   voucherType: number;
-  expiryTerm: string;
+  expiryTerm: number;
   fees: number;
   voucherFirstname: boolean;
   voucherLastname: boolean;
@@ -15,7 +15,7 @@ export interface VoucherState {
 
 const initialState: VoucherState = {
   voucherType: 1,
-  expiryTerm: "monthly",
+  expiryTerm: 1,
   fees: 99,
   voucherFirstname: false,
   voucherLastname: false,
@@ -33,7 +33,7 @@ const VoucherSlice = createSlice({
     setVoucherType: (state, action: PayloadAction<number>) => {
       state.voucherType = action.payload;
     },
-    setExpiryTerm: (state, action: PayloadAction<string>) => {
+    setExpiryTerm: (state, action: PayloadAction<number>) => {
       state.expiryTerm = action.payload;
     },
     setFees: (state, action: PayloadAction<number>) => {

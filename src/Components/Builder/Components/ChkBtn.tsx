@@ -5,7 +5,7 @@ import {
   setUseLastname,
   setUseEmail,
   setUseMobileNumber,
-} from "../../../Slices/moduleSlice";
+} from "../../../Slices/membershipSlice";
 import {
   setVoucherFirstname,
   setVoucherLastname,
@@ -16,10 +16,10 @@ import {
 const ChkBtn = (props: any) => {
   const dispatch = useAppDispatch();
   const { name } = props;
-  const module = useAppSelector((state) => state.module);
+  const membership = useAppSelector((state) => state.membership);
   const voucher = useAppSelector((state) => state.voucher);
-  const widget = useAppSelector((state) => state.widget);
-  const { useFirstname, useLastname, useEmail, useMobileNumber } = module;
+  const module = useAppSelector((state) => state.module);
+  const { useFirstname, useLastname, useEmail, useMobileNumber } = membership;
   const {
     voucherFirstname,
     voucherLastname,
@@ -27,7 +27,7 @@ const ChkBtn = (props: any) => {
     voucherMobileNumber,
   } = voucher;
 
-  const { moduleIndex } = widget;
+  const { moduleIndex } = module;
 
   return (
     <div className="text-[#5A5A5A] mb-[14px] h-[48px] w-full rounded-[8px] border-[1px] border-user-border pl-[20px] pr-[16px] flex items-center justify-between">

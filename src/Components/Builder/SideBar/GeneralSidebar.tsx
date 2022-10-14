@@ -1,7 +1,7 @@
 import { Button, Switch } from "@material-tailwind/react";
 import EditInput from "../Components/EditInput";
 
-const GeneralSidebar = () => {
+const GeneralSidebar = (props: any) => {
   return (
     <div>
       <div className="h-full w-[340px] bg-white text-[#5A5A5A] border-[1px] border-l-0 ">

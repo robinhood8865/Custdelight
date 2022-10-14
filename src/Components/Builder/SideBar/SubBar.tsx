@@ -7,9 +7,12 @@ import ThemeSidebar from "./ThemeSidebar";
 import SettingsSidebar from "./SettingsSidebar";
 import GeneralSidebar from "./GeneralSidebar";
 import IntegrationSidebar from "./IntegrationSidebar";
+import { useAppDispatch, useAppSelector } from "../../../App/hooks";
+import { setSettingIndex } from "../../../Slices/settingSlice";
 
-const SubBar = (props: any) => {
-  const { setModuleIndex } = props;
+const SubBar = () => {
+  const dispatch = useAppDispatch();
+  const { settingIndex } = useAppSelector((state) => state.setting);
   const location = useLocation();
 
   const getCurrentPage = (url: string): boolean => {
@@ -32,7 +35,8 @@ const SubBar = (props: any) => {
               <div className="font-bold text-[16px] leading-[20px] ">
                 {getCurrentPage("modules") && "Modules"}
                 {getCurrentPage("theme") && "Theme"}
-                {getCurrentPage("settings") && "Settings"}
+                {getCurrentPage("settings") && settingIndex === 0 && "Settings"}
+                {getCurrentPage("settings") && settingIndex === 1 && "General"}
               </div>
               <CloseBtn setShowSubbar={setShowSubbar} />
             </div>
@@ -42,8 +46,13 @@ const SubBar = (props: any) => {
             {getCurrentPage("modules") && <ModulesSidebar />}
             {getCurrentPage("theme") && <ThemeSidebar />}
             {/* {getCurrentPage("users") && "Users"} */}
-            {/* {getCurrentPage("settings") && <GeneralSidebar />} */}
-            {getCurrentPage("settings") && <IntegrationSidebar />}
+            {getCurrentPage("settings") && settingIndex === 1 && (
+              <GeneralSidebar />
+            )}
+            {/* {getCurrentPage("settings") && <IntegrationSidebar />} */}
+            {getCurrentPage("settings") && settingIndex === 0 && (
+              <SettingsSidebar />
+            )}
           </div>
         </div>
       )}

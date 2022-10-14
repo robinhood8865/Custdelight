@@ -1,14 +1,46 @@
 import React from "react";
-import logo from "../../../src/Assets/Images/Logo.svg";
-import tabler_help from "../../../src/Assets/Images/tabler_help.svg";
-import tabler_account from "../../../src/Assets/Images/tabler_account.svg";
 import { Link } from "react-router-dom";
 import "tw-elements";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
+import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import ApiService from "../../Services/ApiService";
 
 const BuilderNavBar = () => {
   const navigate = useNavigate();
+  const membership = useAppSelector((state) => state.membership);
+  const voucher = useAppSelector((state) => state.voucher);
+  const module = useAppSelector((state) => state.module);
+
+  const onPublish = (e: any) => {
+    e.preventDefault();
+    const user = localStorage.getItem("user");
+
+    const userObj = user && JSON.parse(user);
+    const widgetId = userObj.widgetId1;
+    const widget = {
+      module: {
+        membership,
+        voucher,
+      },
+    };
+
+    const data = { widgetId, widget };
+    console.log(
+      "🚀 ~ file: BuilderNavBar.tsx ~ line 20 ~ onPublish ~ data",
+      data
+    );
+    const error = ApiService.updateWidget(data);
+    console.log(error);
+    // axios.post(API_URL + "/module", data).then((response) => {
+    //   console.log(
+    //     "🚀 ~ file: BuilderNavBar.tsx ~ line 24 ~ axios.post ~ response",
+    //     response
+    //   );
+    //   return response.data;
+    // });
+  };
+
   return (
     <div className="absolute w-full min-w-[1405px] h-[54px] bg-user-main flex">
       <Link to="/" className="w-[70px] h-full  hover:cursor-pointer">
@@ -43,7 +75,10 @@ const BuilderNavBar = () => {
         <Button className="w-[130px] h-[30px] rounded-[40px] bg-[#F56A6A] mr-[10px] text-[14px] text-white leading-[17px] font-bold flex items-center justify-center ">
           <div>Priview</div>
         </Button>
-        <Button className="w-[130px] h-[30px] rounded-[40px] bg-black mr-[10px] text-[14px] text-white leading-[17px] font-bold flex items-center justify-center">
+        <Button
+          onClick={onPublish}
+          className="w-[130px] h-[30px] rounded-[40px] bg-black mr-[10px] text-[14px] text-white leading-[17px] font-bold flex items-center justify-center"
+        >
           Publish
         </Button>
       </div>

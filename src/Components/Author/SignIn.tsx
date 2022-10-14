@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { useState } from "react";
 
@@ -11,9 +11,13 @@ import Icgoogle_logo from "../../../src/Assets/Images/ic_google_logo.svg";
 import { login } from "../../Services/auth.service";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import { setMemebershipConfigration } from "../../Slices/membershipSlice";
 
 const SignIn = (props: any) => {
   const [show, setShow] = useState(false);
+  const dispatch = useAppDispatch();
+  const membership = useAppSelector((state) => state.membership);
   const navigate = useNavigate();
 
   const handleSubmit = (event: any) => {
@@ -22,50 +26,33 @@ const SignIn = (props: any) => {
 
     login(email, password).then(
       (response) => {
+        console.log(
+          "🚀 ~ file: SignIn.tsx ~ line 27 ~ handleSubmit ~ response",
+          response
+        );
+        const widget = response.widgetdata;
+        const { membershipData, voucherData } = widget.module;
+        console.log(
+          "🚀 ~ file: SignIn.tsx ~ line 33 ~ handleSubmit ~ membershipData, voucherData",
+          membershipData,
+          voucherData
+        );
+        const { __v, _id, ...tempdata } = membershipData;
+        dispatch(setMemebershipConfigration(tempdata));
+        console.log("tempdata", tempdata);
+        console.log("membershiptype", membership);
         toast.success("successfully login");
-        console.log(response);
-        localStorage.setItem("token", JSON.stringify(response.data));
+
         navigate("/");
-        // setMessage(response.data.message);
-        // setSuccessful(true);
       },
       (error) => {
-        // console.log(error);
         const resMessage = error.response.data.errors[0].msg;
-        // setMessage(resMessage);
-        console.log(resMessage);
         toast.error(resMessage);
-        // setSuccessful(false);
       }
     );
     event.preventDefault();
   };
-  // const [loading, setLoading] = useState(false);
-  // const { isLoggedIn } = useSelector((state: any) => state.auth);
-  // const { message } = useSelector((state: any) => state.message);
 
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(clearMessage());
-  // }, [dispatch]);
-
-  // const handleLogin = (formValue: any) => {
-  //   const { email, password } = formValue;
-
-  //   // dispatch(login({ email, password }))
-  //   //   .unwrap()
-  //   //   .then(() => {
-  //   //     props.history.psuh("/profile");
-  //   //     window.location.reload();
-  //   //   })
-  //   //   .catch(() => {
-  //   //     setLoading(false);
-  //   //   });
-  // };
-  // if (isLoggedIn) {
-  //   // return <Redirect to="/profile" />;
-  // }
   return (
     <div className="w-[457px] h-[445px] bg-white p-[32px] font-inter">
       <div className=" font-[700] text-[24px] leading-[32px] text-user-text mb-[32px]">

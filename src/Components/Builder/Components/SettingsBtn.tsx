@@ -1,9 +1,26 @@
+import { useAppDispatch } from "../../../App/hooks";
+import { setSettingIndex } from "../../../Slices/settingSlice";
+
 const SettingsBtn = (props: any) => {
-  const { onCustomClick } = props;
+  const dispatch = useAppDispatch();
+  const { name, detail } = props;
   return (
     <div
       onClick={() => {
-        onCustomClick();
+        switch (name) {
+          case "General":
+            dispatch(setSettingIndex(1));
+            break;
+          case "Email Signature":
+            dispatch(setSettingIndex(2));
+            break;
+          case "Integration":
+            dispatch(setSettingIndex(3));
+            break;
+          default:
+            dispatch(setSettingIndex(0));
+            break;
+        }
       }}
       className="cursor-pointer h-[50px] w-[274px] flex justify-between items-center mb-[21px]"
     >
@@ -29,10 +46,10 @@ const SettingsBtn = (props: any) => {
         </div>
         <div className="ml-[12px]">
           <div className="text-[14px] text-[#5A5A5A] font-bold leadign-[24px] mb-[4px]">
-            {props.name}
+            {name}
           </div>
           <div className="text-[12px] text-[#5A5A5A] font-[400] leadign-[18px]">
-            {props.detail}
+            {detail}
           </div>
         </div>
       </div>

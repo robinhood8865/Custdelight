@@ -1,10 +1,10 @@
 import { useAppDispatch, useAppSelector } from "../../../App/hooks";
-// import { setMemberShip, setVouchers } from "../../../Slices/widgetSlice";
+
 import ModulesBtn from "../Components/ModulesBtn";
 
 const ModulesSidebar = () => {
-  const widget = useAppSelector((state) => state.widget);
-  const { visibleMemberShip, visibleVouchers, visiblePayment } = widget;
+  const module = useAppSelector((state) => state.module);
+  const { visibleMemberShip, visibleVouchers, visiblePayment } = module;
   return (
     <div className="h-full w-[340px] bg-white text-black border-[1px] border-l-0 ">
       <div className=" w-full border-t-[1px] border-[#DFDFDF] pl-[26px] pr-[34px] pt-[30px]">

@@ -3,8 +3,17 @@ import { useAppDispatch, useAppSelector } from "../../App/hooks";
 
 const Widget = () => {
   const dispatch = useAppDispatch();
-  const widget = useAppSelector((state) => state.widget);
-  const { visibleMemberShip, visibleVouchers, visiblePayment } = widget;
+  const module = useAppSelector((state) => state.module);
+  const theme = useAppSelector((state) => state.theme);
+  const { styleIndex, headerColor, buttonColor, widgetColor } = theme;
+  const { visibleMemberShip, visibleVouchers, visiblePayment } = module;
+  const customColor = (str: string) => {
+    return "bg-[" + str + "]";
+  };
+
+  const temp = () => {
+    return "bg-user-[" + headerColor + "] static w-full h-[250px] rounded-t-md";
+  };
 
   return (
     <div className="p-[40px] min-w-[500px]">
@@ -43,11 +52,15 @@ const Widget = () => {
           </svg>
         </div>
         <div className="relative ">
-          <div className="static w-full h-[250px] bg-user-main rounded-t-md  ">
+          <div
+            // className="bg-user-main static w-full h-[250px]  rounded-t-md"
+            className={temp()}
+            // "bg-user-main static w-full h-[250px] rounded-t-md"
+          >
             <div className="absolute top-[25px] left-[25px] text-white font-bold">
               Welcome to
             </div>
-            <div className="absolute top-[45px] left-[25px] text-white text-[24px] font-bold">
+            <div className="bg-[#123123] absolute top-[45px] left-[25px] text-white text-[24px] font-bold">
               Restaurant ABC
             </div>
 

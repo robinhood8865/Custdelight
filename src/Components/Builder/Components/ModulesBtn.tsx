@@ -4,7 +4,7 @@ import {
   setVouchers,
   setPayment,
   setModuleIndex,
-} from "../../../Slices/widgetSlice";
+} from "../../../Slices/moduleSlice";
 
 import React, { useState } from "react";
 import { Button } from "@material-tailwind/react";

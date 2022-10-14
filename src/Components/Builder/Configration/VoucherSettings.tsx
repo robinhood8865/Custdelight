@@ -1,8 +1,19 @@
 import { Input, Select, Option, Button } from "@material-tailwind/react";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../App/hooks";
+import {
+  setRedemptionType,
+  setRedemption,
+  setVoucherTerms,
+} from "../../../Slices/voucherSlice";
 
 const VoucherSettings = () => {
-  const [isRedemption, setRedemtion] = useState("yes");
+  const dispatch = useAppDispatch();
+  const voucher = useAppSelector((state) => state.voucher);
+  const { redemptionType, redemption, voucherTerms } = voucher;
+  let voucherRedemption = 0;
+  const [vTerm, setvTerm] = useState(voucherTerms);
+
   return (
     <div className=" w-full h-full  ">
       <div className="mb-[20px] font-bold text-[16px] text-black leading-[20px]">
@@ -12,9 +23,11 @@ const VoucherSettings = () => {
         <Select
           label="Redemption Minimum"
           onChange={(e: any) => {
-            setRedemtion(e);
+            e.toString() === "yes"
+              ? dispatch(setRedemptionType(true))
+              : dispatch(setRedemptionType(false));
           }}
-          value={isRedemption}
+          value={redemptionType ? "yes" : "no"}
         >
           <Option key="yeskey" value="yes">
             Yes
@@ -25,19 +38,41 @@ const VoucherSettings = () => {
         </Select>
       </div>
 
-      {isRedemption === "yes" && (
+      {redemptionType === true && (
         <div>
           <div className="mt-[20px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
             Redemption Minimum
           </div>
 
-          <Input value={"$200"} label="Redemption Minimum" />
+          <Input
+            onChange={(e: any) => {
+              console.log("e", e);
+              console.log("value", e.target.value);
+              console.log("length", e.target.value.length);
+              e.target.value.length <= 2 || e.target.value.slice(2, 4) === "0x"
+                ? (voucherRedemption = 0)
+                : (voucherRedemption = parseFloat(e.target.value.slice(2)));
+
+              dispatch(setRedemption(voucherRedemption));
+            }}
+            value={"$ " + redemption}
+            label="Redemption Minimum"
+          />
         </div>
       )}
       <div className="mt-[20px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
         Vouchers Terms
       </div>
-      <Input value={"https://www.xxx.com"} label="Vouchers Terms" />
+      <Input
+        onBlur={(e: any) => {
+          dispatch(setVoucherTerms(vTerm));
+        }}
+        onChange={(e: any) => {
+          setvTerm(e.target.value);
+        }}
+        value={vTerm}
+        label="Vouchers Terms"
+      />
       <div className="mt-[20px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
         Stripe Integration
       </div>

@@ -22,6 +22,12 @@ const VoucherType = () => {
     { value: "6 Months", index: "7" },
     { value: "12 Months", index: "8" },
   ];
+
+  const voucherTypeOptions = [
+    { value: "Free", index: "1" },
+    { value: "Paid", index: "2" },
+  ];
+
   return (
     <div className=" w-full h-full  ">
       <div className="mt-[34px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
@@ -35,12 +41,11 @@ const VoucherType = () => {
           }}
           value={voucherType.toString()}
         >
-          <Option key="freekey" value="1">
-            Free
-          </Option>
-          <Option key="paidkey" value="2">
-            Paid
-          </Option>
+          {voucherTypeOptions.map((voucherTypeOption) => (
+            <Option value={voucherTypeOption.index}>
+              {voucherTypeOption.value}
+            </Option>
+          ))}
         </Select>
       </div>
 
@@ -53,9 +58,9 @@ const VoucherType = () => {
             <Select
               label="Expiry Terms"
               onChange={(e: any) => {
-                dispatch(setExpiryTerm(e));
+                dispatch(setExpiryTerm(parseInt(e)));
               }}
-              value={expiryTerm}
+              value={expiryTerm.toString()}
             >
               {expiryOptions.map((expiryOption) => (
                 <Option value={expiryOption.index}>{expiryOption.value}</Option>
@@ -65,20 +70,25 @@ const VoucherType = () => {
           <div className="mt-[28px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
             Fees
           </div>
-          <Input
-            onChange={(e: any) => {
-              console.log("e", e);
-              console.log("value", e.target.value);
-              console.log("length", e.target.value.length);
-              e.target.value.length <= 2 || e.target.value.slice(2, 4) === "0x"
-                ? (voucherfees = 0)
-                : (voucherfees = parseInt(e.target.value.slice(2)));
-
-              dispatch(setFees(voucherfees));
-            }}
-            value={"$ " + fees}
-            label="Fees"
-          />
+          <div className="relative">
+            <div className="absolute top-[8px] left-[10px] text-gray-500 ">
+              $
+            </div>
+            <Input
+              type="number"
+              className="pl-[23px]"
+              onChange={(e: any) => {
+                dispatch(setFees(parseFloat(e.target.value)));
+              }}
+              onBlur={(e: any) => {
+                if (e.target.value === "") {
+                  dispatch(setFees(0));
+                }
+              }}
+              value={fees}
+              label="Fees"
+            />
+          </div>
         </div>
       )}
     </div>

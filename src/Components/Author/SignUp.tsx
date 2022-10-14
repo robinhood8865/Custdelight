@@ -8,11 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 import { register } from "../../Services/auth.service";
 
-// import { useDispatch, useSelector } from "react-redux";
-
-// import { register } from "../../Slices/auth";
-// import { clearMessage } from "../../Slices/message";
-
 import { Button } from "@material-tailwind/react";
 import Icfb_logo from "../../../src/Assets/Images/ic_fb_logo.svg";
 import Icgoogle_logo from "../../../src/Assets/Images/ic_google_logo.svg";
@@ -36,7 +31,7 @@ const schema = yup.object().shape({
   password: yup.string().required(),
 });
 
-const SignUp: React.FC = () => {
+const SignUp = () => {
   const [show, setShow] = useState(false);
   const [agree, setAgree] = useState(false);
   const [successful, setSuccessful] = useState<boolean>(false);
@@ -49,20 +44,6 @@ const SignUp: React.FC = () => {
     lastname: "",
     password: "",
   };
-  // const [successful, setSuccessful] = useState(false);
-  // const [message] = useSelector((state: any) => state.message);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(clearMessage());
-  // }, [dispatch]);
-
-  // const initialValues = {
-  //   firstname: "",
-  //   lastname: "",
-  //   email: "",
-  //   password: "",
-  // };
 
   const handleRegister = (event: any) => {
     const email = event.target.email.value;
@@ -91,21 +72,7 @@ const SignUp: React.FC = () => {
       }
     );
     event.preventDefault();
-
-    // const { firstname, lastname, email, password } = formValue;
-    // setSuccessful(false);
-    // const data: IRegister = { firstname, lastname, email, password };
-    // dispatch(register(data))
-    //   .unwrap()
-    //   .thne(() => {
-    //     setSuccessful(true);
-    //   })
-    //   .catch(() => {
-    //     setSuccessful(false);
-    //   });
   };
-
-  // console.log(document.getElementsByName("firstname"));
 
   return (
     <div className="w-[457px] h-[575px] bg-white p-[32px] font-inter">

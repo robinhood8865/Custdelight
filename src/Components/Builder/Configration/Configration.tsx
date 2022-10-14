@@ -12,7 +12,7 @@ import VoucherSettings from "./VoucherSettings";
 const Configration = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const moduleIndex = useAppSelector((state) => state.widget.moduleIndex);
+  const moduleIndex = useAppSelector((state) => state.module.moduleIndex);
   console.log(moduleIndex);
   const getCurrentPage = (url: string): boolean => {
     return location.pathname.toLowerCase().startsWith("/builder/" + url);
@@ -24,7 +24,7 @@ const Configration = () => {
   const [type, setType] = useState(0);
   return (
     <div>
-      {showConfig && (
+      {getCurrentPage("modules") && showConfig && (
         <div className="h-full min-h-screen w-[340px] bg-white text-black border-[1px]  ">
           <div className="h-[67px] ml-[26px] mr-[16px] flex justify-between items-center">
             <div className="font-bold text-[16px] leading-[20px] ">
@@ -146,7 +146,7 @@ const Configration = () => {
           </div>
         </div>
       )}
-      {!showConfig && (
+      {getCurrentPage("modules") && !showConfig && (
         <div className="h-full flex items-center">
           <div
             className="cursor-pointer mr-[10px]"

@@ -1,8 +1,33 @@
-import { useRef, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../App/hooks";
+import { setStyleIndex } from "../../../Slices/themeSlice";
 const ColorInput = (props: any) => {
-  const [visible, setVisible] = useState(false);
+  const { styleIndex, headerColor, buttonColor, widgetColor } = useAppSelector(
+    (state) => state.theme
+  );
+  const dispatch = useAppDispatch();
   const { name } = props;
+  let color = "";
+
+  const setSelectState = (state: string) => {
+    switch (state) {
+      case "Header":
+        dispatch(setStyleIndex(1));
+
+        break;
+      case "Button":
+        dispatch(setStyleIndex(2));
+
+        break;
+      case "Widget":
+        dispatch(setStyleIndex(3));
+
+        break;
+      default:
+        dispatch(setStyleIndex(0));
+        break;
+    }
+  };
 
   return (
     <div>
@@ -12,10 +37,24 @@ const ColorInput = (props: any) => {
       <div className="relative flex w-full flex-wrap items-stretch mb-[26px]">
         <input
           type="text"
-          disabled={!visible}
+          disabled
+          value={
+            name === "Header"
+              ? headerColor
+              : name === "Button"
+              ? buttonColor
+              : name === "Widget"
+              ? widgetColor
+              : ""
+          }
           className="px-3 py-3 relative bg-white rounded-[8px] text-[14px] leading-[21px] font-[400] border-[#EAEAEA] border-[1px] shadow outline-none focus:outline-none focus:ring w-full pr-10 "
         />
-        <span className="z-10 h-full  font-normal absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
+        <div
+          onClick={() => {
+            setSelectState(name);
+          }}
+          className="z-10 h-full  font-normal absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3"
+        >
           <div className="cursor-pointer w-full h-full flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +74,7 @@ const ColorInput = (props: any) => {
               </g>
             </svg>
           </div>
-        </span>
+        </div>
       </div>
     </div>
   );
