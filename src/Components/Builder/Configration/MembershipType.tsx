@@ -41,7 +41,7 @@ const MembershipType = () => {
           onChange={(e: any) => {
             dispatch(setMembershipType(parseInt(e)));
           }}
-          value={membershipType.toString()}
+          value={"" + membershipType}
         >
           {membershipTypeOptions.map((membershipTypeOption) => (
             <Option value={membershipTypeOption.index}>

@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ItemButton from "../Components/ItemButton";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
 const SideBar = () => {
   const navigate = useNavigate();
-  const [index, setIndex] = useState(0);
+  const location = useLocation();
+  const [index, setIndex] = useState(-1);
 
   const handleClickItemButton = (index: any) => {
     setIndex(index);
   };
-
+  const getCurrentPage = (url: string): boolean => {
+    return location.pathname.toLowerCase().startsWith("/builder/" + url);
+  };
+  useEffect(() => {
+    getCurrentPage("modules") && setIndex(0);
+    getCurrentPage("theme") && setIndex(1);
+    getCurrentPage("users") && setIndex(2);
+    getCurrentPage("settings") && setIndex(3);
+  });
+  console.log("index", index);
   return (
     <div className="h-full w-[200px] border-user-border border-[1px] bg-white">
       <div className="mt-[82px] h-[full]"></div>

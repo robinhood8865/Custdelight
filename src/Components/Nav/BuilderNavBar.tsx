@@ -5,14 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 import ApiService from "../../Services/ApiService";
+import toast from "react-hot-toast";
 
 const BuilderNavBar = () => {
   const navigate = useNavigate();
   const membership = useAppSelector((state) => state.membership);
   const voucher = useAppSelector((state) => state.voucher);
   const module = useAppSelector((state) => state.module);
+  const theme = useAppSelector((state) => state.theme);
+  const setting = useAppSelector((state) => state.setting);
 
-  const onPublish = (e: any) => {
+  const onPublish = async (e: any) => {
     e.preventDefault();
     const user = localStorage.getItem("user");
 
@@ -23,6 +26,8 @@ const BuilderNavBar = () => {
         membership,
         voucher,
       },
+      theme,
+      setting,
     };
 
     const data = { widgetId, widget };
@@ -30,8 +35,12 @@ const BuilderNavBar = () => {
       "🚀 ~ file: BuilderNavBar.tsx ~ line 20 ~ onPublish ~ data",
       data
     );
-    const error = ApiService.updateWidget(data);
-    console.log(error);
+    const error = await ApiService.updateWidget(data);
+    console.log("res", error);
+    localStorage.removeItem("widget");
+    localStorage.setItem("widget", JSON.stringify(widget));
+    toast.success("successfully published");
+
     // axios.post(API_URL + "/module", data).then((response) => {
     //   console.log(
     //     "🚀 ~ file: BuilderNavBar.tsx ~ line 24 ~ axios.post ~ response",

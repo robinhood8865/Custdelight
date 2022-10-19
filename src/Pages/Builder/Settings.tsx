@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { useAppDispatch } from "../../App/hooks";
+import Widget from "../../Components/Widget/Widget";
+import { setSettingIndex } from "../../Slices/settingSlice";
 
 const Modules = (props: any) => {
   const { name } = props;
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  useEffect(() => {
+    dispatch(setSettingIndex(0));
+  }, [location.pathname]);
   return (
-    <div>
-      This is Settings
-      {/* <div className="h-full min-h-screen w-[340px] bg-white text-black border-[1px] border-l-0 ">
-        <div className="h-[67px] ml-[26px] mr-[16px] flex justify-between items-center">
-          <div className="font-bold text-[16px] leading-[20px] ">{name}</div>
-          <CloseBtn />
-        </div>
-        {name === "Modules" && <ModulesSidebar />}
-        <div></div>
-      </div> */}
+    <div className="flex">
+      <Widget />
+      <div className="ml-[20px]"></div>
     </div>
   );
 };

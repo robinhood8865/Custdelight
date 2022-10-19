@@ -6,7 +6,7 @@ const ModulesSidebar = () => {
   const module = useAppSelector((state) => state.module);
   const { visibleMemberShip, visibleVouchers, visiblePayment } = module;
   return (
-    <div className="h-full w-[340px] bg-white text-black border-[1px] border-l-0 ">
+    <div className="h-full w-[340px] bg-white text-black border-[1px] border-l-0 border-b-0 ">
       <div className=" w-full border-t-[1px] border-[#DFDFDF] pl-[26px] pr-[34px] pt-[30px]">
         <div className="">
           <div className="text-[16px] font-bold leading-[20px] mb-[15px]">

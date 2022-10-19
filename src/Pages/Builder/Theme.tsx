@@ -1,35 +1,30 @@
-import React, { useState } from "react";
-import { useAppSelector } from "../../App/hooks";
-import ColorPalete from "../../Components/Builder/Components/ColorPalete";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import ButtonColorPalete from "../../Components/Builder/Components/ButtonColorPalete";
+import HeaderColorPalete from "../../Components/Builder/Components/HeaderColorPalete";
+import WidgetColorPalete from "../../Components/Builder/Components/WidgetColorPalete";
 
 import Widget from "../../Components/Widget/Widget";
+import { setStyleIndex } from "../../Slices/themeSlice";
 
 const Theme = () => {
+  const dispatch = useAppDispatch();
+  const location = useLocation();
   const themeData = useAppSelector((state) => state.theme);
   const { styleIndex, headerColor, buttonColor, widgetColor } = themeData;
-  let color = "";
-  switch (styleIndex) {
-    case 1:
-      color = headerColor;
-      break;
-    case 2:
-      color = buttonColor;
-      break;
-    case 3:
-      color = widgetColor;
-      break;
-    default:
-      break;
-  }
+
+  useEffect(() => {
+    dispatch(setStyleIndex(0));
+  }, [location.pathname]);
+
   return (
-    <div className=" flex">
+    <div className="flex">
       <Widget />
       <div className="mt-[40px] ml-[20px]">
-        {styleIndex === 0 ? (
-          ""
-        ) : (
-          <ColorPalete styleIndex={styleIndex} mycolor={color} />
-        )}
+        {styleIndex === 1 && <HeaderColorPalete headerColor={headerColor} />}
+        {styleIndex === 2 && <ButtonColorPalete buttonColor={buttonColor} />}
+        {styleIndex === 3 && <WidgetColorPalete widgetColor={widgetColor} />}
       </div>
     </div>
   );

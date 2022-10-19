@@ -13,23 +13,29 @@ export interface VoucherState {
   voucherTerms: string;
 }
 
-const initialState: VoucherState = {
-  voucherType: 1,
-  expiryTerm: 1,
-  fees: 99,
-  voucherFirstname: false,
-  voucherLastname: false,
-  voucherEmail: false,
-  voucherMobileNumber: false,
-  redemptionType: false,
-  redemption: 200,
-  voucherTerms: "https://www.xxx.com",
-};
+const widget = localStorage.getItem("widget");
+
+const initialState: VoucherState = widget
+  ? JSON.parse(widget).module.voucher
+  : {
+      voucherType: 1,
+      expiryTerm: 1,
+      fees: 99,
+      voucherFirstname: false,
+      voucherLastname: false,
+      voucherEmail: false,
+      voucherMobileNumber: false,
+      redemptionType: false,
+      redemption: 200,
+      voucherTerms: "https://www.xxx.com",
+    };
 
 const VoucherSlice = createSlice({
   name: "Voucher",
   initialState,
   reducers: {
+    setVoucherConfigration: (state, action: PayloadAction<VoucherState>) =>
+      action.payload,
     setVoucherType: (state, action: PayloadAction<number>) => {
       state.voucherType = action.payload;
     },
@@ -76,5 +82,6 @@ export const {
   setRedemptionType,
   setRedemption,
   setVoucherTerms,
+  setVoucherConfigration,
 } = actions;
 export default reducer;

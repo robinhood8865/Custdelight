@@ -57,7 +57,7 @@ const SignUp = () => {
       (response) => {
         toast.success("successfully registered");
         console.log(response);
-        localStorage.setItem("token", JSON.stringify(response.data));
+        // localStorage.setItem("token", JSON.stringify(response.data.));
         setMessage(response.data.message);
         setSuccessful(true);
         navigate("/signin");

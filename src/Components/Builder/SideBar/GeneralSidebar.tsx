@@ -1,17 +1,62 @@
-import { Button, Switch } from "@material-tailwind/react";
+import { Button, Switch, Input } from "@material-tailwind/react";
+import { useAppDispatch, useAppSelector } from "../../../App/hooks";
+import {
+  setSubDomain,
+  setCustomerPortal,
+  setLogoUrl,
+  setBranding,
+  setSenderEmail,
+  setSenderName,
+} from "../../../Slices/settingSlice";
 import EditInput from "../Components/EditInput";
 
 const GeneralSidebar = (props: any) => {
+  const dispatch = useAppDispatch();
+  const userInfo = localStorage.getItem("user");
+  const userObj = userInfo && JSON.parse(userInfo);
+  const widgetId = userObj.widgetId1;
+  console.log(widgetId);
+
+  const { subDomain, customerPortal } = useAppSelector(
+    (state) => state.setting
+  );
   return (
     <div>
-      <div className="h-full w-[340px] bg-white text-[#5A5A5A] border-[1px] border-l-0 ">
-        <div className="text-[#5A5A5A] bg-white w-full border-t-[1px] border-[#DFDFDF] pl-[26px] pr-[23px] pt-[25px]">
+      <div className="h-full w-[340px] bg-white text-[#5A5A5A] border-r-[1px] ">
+        <div className="text-[#5A5A5A] bg-white w-full border-t-[1px] border-user-border pl-[26px] pr-[23px] pt-[25px]">
           <div className="">
-            <EditInput name="WidgetName" />
-            <EditInput name="Sub Domain" />
-            <EditInput name="Customer Portal" />
+            <div className=" mb-[10px] font-bold text-[16px] leading-[24px]">
+              Widget Name
+            </div>
+            <Input value={"Widget (" + widgetId + ")"} label="Widget Name" />
+            <div className="mt-[25px] mb-[10px] font-bold text-[16px] leading-[24px]">
+              Sub Domain
+            </div>
+            <Input
+              onBlur={(e: any) => {
+                // dispatch(setMembershipTerms(mTerm));
+              }}
+              onChange={(e: any) => {
+                dispatch(setSubDomain(e.target.value));
+              }}
+              value={subDomain}
+              label="Sub Domain"
+            />
+            <div className="mt-[25px] mb-[10px] font-bold text-[16px] leading-[24px]">
+              Customer Portal
+            </div>
+            <Input
+              onBlur={(e: any) => {
+                // dispatch(setMembershipTerms(mTerm));
+              }}
+              onChange={(e: any) => {
+                dispatch(setCustomerPortal(e.target.value));
+              }}
+              value={customerPortal}
+              label="Customer Portal"
+            />
           </div>
-          <div className="mt-[-15px] mb-[22px] text-[12px] font-[400] leading-[18px]">
+          <div className="mt-[15px] mb-[22px] text-[12px] font-[400] leading-[18px]">
             This is where your customers can log in and view thier orders,
             subscriptions, downloads and license keys.
           </div>

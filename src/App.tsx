@@ -8,7 +8,7 @@ import SignIn from "./Components/Author/SignIn";
 import SignUp from "./Components/Author/SignUp";
 
 import Subscription from "./Pages/Subscription";
-import Builder from "./Pages/Builder/Builder";
+// import Builder from "./Pages/Builder/Builder";
 
 // Redux
 import { Provider } from "react-redux";

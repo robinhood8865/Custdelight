@@ -15,15 +15,9 @@ export interface IMembershipState {
 }
 
 const widget = localStorage.getItem("widget");
-// console.log("🚀 ~ file: membershipSlice.tsx ~ line 18 ~ widget", widget);
-// widget &&
-//   console.log(
-//     "🚀 ~ file: membershipSlice.tsx ~ line 18 ~ widgetparsed",
-//     JSON.parse(widget)
-//   );
 
 const initialState: IMembershipState = widget
-  ? JSON.parse(widget).module.membershipData
+  ? JSON.parse(widget).module.membership
   : {
       membershipType: 1,
       paymentTerm: 1,

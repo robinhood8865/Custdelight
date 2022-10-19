@@ -6,21 +6,27 @@ export interface ThemeState {
   headerColor: string;
   buttonColor: string;
   widgetColor: string;
-  widgetIcon: any;
+  widgetIcon: string;
 }
 
-const initialState: ThemeState = {
-  styleIndex: 0,
-  headerColor: "#812FBF",
-  buttonColor: "#812FBF",
-  widgetColor: "#812FBF",
-  widgetIcon: "Icon",
-};
+const widget = localStorage.getItem("widget");
+
+const initialState: ThemeState = widget
+  ? JSON.parse(widget).theme
+  : {
+      styleIndex: 0,
+      headerColor: "#812FBF",
+      buttonColor: "#812FBF",
+      widgetColor: "#812FBF",
+      widgetIcon: "Icon",
+    };
 
 const ThemeSlice = createSlice({
   name: "Theme",
   initialState,
   reducers: {
+    setThemeConfigration: (state, action: PayloadAction<ThemeState>) =>
+      action.payload,
     setStyleIndex: (state, action: PayloadAction<number>) => {
       state.styleIndex = action.payload;
     },
@@ -47,5 +53,6 @@ export const {
   setButtonColor,
   setWidgetColor,
   setwidgetIcon,
+  setThemeConfigration,
 } = actions;
 export default reducer;

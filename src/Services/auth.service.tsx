@@ -23,14 +23,6 @@ export const login = (email: string, password: string) => {
       password,
     })
     .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem("accessToken", response.data.accessToken);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        localStorage.setItem(
-          "widget",
-          JSON.stringify(response.data.widgetdata)
-        );
-      }
       return response.data;
     });
 };

@@ -13,16 +13,51 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 import { setMemebershipConfigration } from "../../Slices/membershipSlice";
+import { setVoucherConfigration } from "../../Slices/voucherSlice";
+import { setThemeConfigration } from "../../Slices/themeSlice";
+import { setSettingConfigration } from "../../Slices/settingSlice";
 
 const SignIn = (props: any) => {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
   const membership = useAppSelector((state) => state.membership);
   const navigate = useNavigate();
+  const getData = (data: any) => {
+    const { __v, _id, ...tempdata } = data;
+    return tempdata;
+  };
 
   const handleSubmit = (event: any) => {
     const email = event.target.email.value;
     const password = event.target.password.value;
+    const reloadData = (data: any) => {
+      const { module, theme, setting } = data;
+      const { membership, voucher } = module;
+      console.log("data", data);
+      console.log("module", module);
+
+      const membershipData = getData(membership);
+      console.log("membership", membershipData);
+      dispatch(setMemebershipConfigration(membershipData));
+
+      const voucherData = getData(voucher);
+      console.log("voucher", voucherData);
+      dispatch(setVoucherConfigration(voucherData));
+
+      const themeData = getData(theme);
+      console.log("theme", themeData);
+      dispatch(setMemebershipConfigration(themeData));
+
+      const settingData = getData(setting);
+      console.log("setting", settingData);
+      dispatch(setSettingConfigration(settingData));
+      const widget = {
+        module: { membership: membershipData, voucher: voucherData },
+        theme: themeData,
+        setting: settingData,
+      };
+      return widget;
+    };
 
     login(email, password).then(
       (response) => {
@@ -30,23 +65,21 @@ const SignIn = (props: any) => {
           "🚀 ~ file: SignIn.tsx ~ line 27 ~ handleSubmit ~ response",
           response
         );
+
         const widget = response.widgetdata;
-        const { membershipData, voucherData } = widget.module;
-        console.log(
-          "🚀 ~ file: SignIn.tsx ~ line 33 ~ handleSubmit ~ membershipData, voucherData",
-          membershipData,
-          voucherData
-        );
-        const { __v, _id, ...tempdata } = membershipData;
-        dispatch(setMemebershipConfigration(tempdata));
-        console.log("tempdata", tempdata);
-        console.log("membershiptype", membership);
+        const loadData = reloadData(widget);
+        if (response.accessToken) {
+          localStorage.setItem("accessToken", response.accessToken);
+          localStorage.setItem("user", JSON.stringify(response.user));
+          localStorage.setItem("widget", JSON.stringify(loadData));
+        }
+
         toast.success("successfully login");
 
         navigate("/");
       },
       (error) => {
-        const resMessage = error.response.data.errors[0].msg;
+        const resMessage = error.response.errors[0].msg;
         toast.error(resMessage);
       }
     );

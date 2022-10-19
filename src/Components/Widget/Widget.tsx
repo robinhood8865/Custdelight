@@ -12,7 +12,7 @@ const Widget = () => {
   };
 
   const temp = () => {
-    return "bg-user-[" + headerColor + "] static w-full h-[250px] rounded-t-md";
+    return "bg-[" + headerColor + "] static w-full h-[250px] rounded-t-md";
   };
 
   return (
@@ -54,13 +54,14 @@ const Widget = () => {
         <div className="relative ">
           <div
             // className="bg-user-main static w-full h-[250px]  rounded-t-md"
-            className={temp()}
+            className={`static w-full h-[250px] rounded-t-md`}
+            style={{ backgroundColor: headerColor }}
             // "bg-user-main static w-full h-[250px] rounded-t-md"
           >
             <div className="absolute top-[25px] left-[25px] text-white font-bold">
               Welcome to
             </div>
-            <div className="bg-[#123123] absolute top-[45px] left-[25px] text-white text-[24px] font-bold">
+            <div className="absolute top-[45px] left-[25px] text-white text-[24px] font-bold">
               Restaurant ABC
             </div>
 
@@ -73,7 +74,10 @@ const Widget = () => {
                   With more ways to unlock exciting perks, this is your all
                   access pass to exculsive rewards.
                 </p>
-                <button className="cursor-default mt-[14px] w-[130px] h-[50px] ml-[110px] rounded-[5px] bg-user-main text-white">
+                <button
+                  className="cursor-default mt-[14px] w-[130px] h-[50px] ml-[110px] rounded-[5px] bg-user-main text-white"
+                  style={{ backgroundColor: buttonColor }}
+                >
                   <p className="text-[16px] font-bold">Join now</p>
                 </button>
                 <p className="mt-[7px]  text-center left-[94px] text-[16px]  text-user-gray">
@@ -94,7 +98,10 @@ const Widget = () => {
               <p className="mt-[14px]  text-center left-[94px] text-[16px]  text-user-gray">
                 Buy exculsive vouchers and enjoy savings
               </p>
-              <button className="cursor-default mt-[14px] w-[130px] h-[50px] ml-[110px] rounded-[5px] bg-user-main">
+              <button
+                className="cursor-default mt-[14px] w-[130px] h-[50px] ml-[110px] rounded-[5px] bg-user-main"
+                style={{ backgroundColor: buttonColor }}
+              >
                 <p className="text-[16px] text-white font-bold">Browse</p>
               </button>
             </div>

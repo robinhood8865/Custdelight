@@ -3,16 +3,17 @@ import Sparkle from "../../../src/Assets/Images/sparkle.svg";
 import { Button } from "@material-tailwind/react";
 
 const ItemButton = (props: any) => {
+  const { onCustomClick, name, select } = props;
   return (
     <div
       className=""
       onClick={() => {
-        props.onCustomClick();
+        onCustomClick();
       }}
     >
       <Button
         className={`${
-          props.select === 1
+          select === 1
             ? "bg-user-side-btn-hover text-white"
             : "bg-user-side-btn text-black"
         } border-user-border w-[100px] h-[100px] normal-case rounded-[10px] border-[1px]`}
@@ -41,7 +42,7 @@ const ItemButton = (props: any) => {
           </svg>
         </div>
         <div className="mt-[12px] w-full flex justify-center">
-          <p className="font-bold text-[12px] leading-[15px]">{props.name}</p>
+          <p className="font-bold text-[12px] leading-[15px]">{name}</p>
         </div>
       </Button>
     </div>

@@ -38,7 +38,7 @@ const MembershipSettings = () => {
       </div>
 
       <div className="mt-[20px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
-        Membership Terms
+        Payment Terms
       </div>
       <Input
         onBlur={(e: any) => {
