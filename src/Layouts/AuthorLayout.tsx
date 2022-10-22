@@ -12,10 +12,9 @@ const AuthorLayout = () => {
     <div className="relative w-screen h-screen min-h-[700px] min-w-[500px] grid grid-cols-3 ">
       <div className="hidden md:block">
         <div className="h-full bg-user-main flex items-center justify-center">
-          <div className="w-[320px] h-[249px]  ">
-            <div></div>
+          <Link to="/" className="cursor-pointer w-[320px] h-[249px]  ">
             <img src={CustDeligth_logo} alt="logofile" />
-          </div>
+          </Link>
           <div className="text-white absolute bottom-[67px] flex">
             <div>Having troubles?</div>
             <div className="underline hover:cursor-pointer ml-1">Get Help</div>

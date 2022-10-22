@@ -1,14 +1,14 @@
 import { Switch } from "@material-tailwind/react";
 import { useAppDispatch, useAppSelector } from "../../../App/hooks";
 import {
-  setUseFirstname,
-  setUseLastname,
+  setUseFirstName,
+  setUseLastName,
   setUseEmail,
   setUseMobileNumber,
 } from "../../../Slices/membershipSlice";
 import {
-  setVoucherFirstname,
-  setVoucherLastname,
+  setVoucherFirstName,
+  setVoucherLastName,
   setVoucherEmail,
   setVoucherMobileNumber,
 } from "../../../Slices/voucherSlice";
@@ -19,10 +19,10 @@ const ChkBtn = (props: any) => {
   const membership = useAppSelector((state) => state.membership);
   const voucher = useAppSelector((state) => state.voucher);
   const module = useAppSelector((state) => state.module);
-  const { useFirstname, useLastname, useEmail, useMobileNumber } = membership;
+  const { useFirstName, useLastName, useEmail, useMobileNumber } = membership;
   const {
-    voucherFirstname,
-    voucherLastname,
+    voucherFirstName,
+    voucherLastName,
     voucherEmail,
     voucherMobileNumber,
   } = voucher;
@@ -40,10 +40,10 @@ const ChkBtn = (props: any) => {
                 case 1:
                   switch (e.target.value) {
                     case "First Name":
-                      dispatch(setUseFirstname(e.target.checked));
+                      dispatch(setUseFirstName(e.target.checked));
                       break;
                     case "Last Name":
-                      dispatch(setUseLastname(e.target.checked));
+                      dispatch(setUseLastName(e.target.checked));
                       break;
                     case "Email Address":
                       dispatch(setUseEmail(e.target.checked));
@@ -58,10 +58,10 @@ const ChkBtn = (props: any) => {
                 case 2:
                   switch (e.target.value) {
                     case "First Name":
-                      dispatch(setVoucherFirstname(e.target.checked));
+                      dispatch(setVoucherFirstName(e.target.checked));
                       break;
                     case "Last Name":
-                      dispatch(setVoucherLastname(e.target.checked));
+                      dispatch(setVoucherLastName(e.target.checked));
                       break;
                     case "Email Address":
                       dispatch(setVoucherEmail(e.target.checked));
@@ -82,9 +82,9 @@ const ChkBtn = (props: any) => {
             checked={
               moduleIndex === 1
                 ? name === "First Name"
-                  ? useFirstname
+                  ? useFirstName
                   : name === "Last Name"
-                  ? useLastname
+                  ? useLastName
                   : name === "Email Address"
                   ? useEmail
                   : name === "Mobile Number"
@@ -92,9 +92,9 @@ const ChkBtn = (props: any) => {
                   : false
                 : moduleIndex === 2
                 ? name === "First Name"
-                  ? voucherFirstname
+                  ? voucherFirstName
                   : name === "Last Name"
-                  ? voucherLastname
+                  ? voucherLastName
                   : name === "Email Address"
                   ? voucherEmail
                   : name === "Mobile Number"

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+const widget = localStorage.getItem("widget");
 export interface ModuleState {
   visibleMemberShip: boolean;
   visibleVouchers: boolean;
@@ -7,17 +7,21 @@ export interface ModuleState {
   moduleIndex: number;
 }
 
-const initialState: ModuleState = {
-  visibleMemberShip: false,
-  visibleVouchers: false,
-  visiblePayment: false,
-  moduleIndex: 1,
-};
+const initialState: ModuleState = widget
+  ? JSON.parse(widget).module
+  : {
+      visibleMemberShip: false,
+      visibleVouchers: false,
+      visiblePayment: false,
+      moduleIndex: 1,
+    };
 
 const ModuleSlice = createSlice({
   name: "Module",
   initialState,
   reducers: {
+    setModuleConfigration: (state, action: PayloadAction<ModuleState>) =>
+      action.payload,
     setMemberShip: (state, action: PayloadAction<boolean>) => {
       state.visibleMemberShip = action.payload;
     },
@@ -35,6 +39,11 @@ const ModuleSlice = createSlice({
 
 const { reducer, actions } = ModuleSlice;
 
-export const { setMemberShip, setVouchers, setPayment, setModuleIndex } =
-  actions;
+export const {
+  setModuleConfigration,
+  setMemberShip,
+  setVouchers,
+  setPayment,
+  setModuleIndex,
+} = actions;
 export default reducer;

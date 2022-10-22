@@ -13,7 +13,7 @@ const MembershipUser = () => {
         User Properties
       </div>
       <div>
-        <ChkBtn name="First Name" state={true} />
+        <ChkBtn name="First Name" />
         <ChkBtn name="Last Name" />
         <ChkBtn name="Email Address" />
         <ChkBtn name="Mobile Number" />

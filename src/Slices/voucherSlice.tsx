@@ -4,8 +4,8 @@ export interface VoucherState {
   voucherType: number;
   expiryTerm: number;
   fees: number;
-  voucherFirstname: boolean;
-  voucherLastname: boolean;
+  voucherFirstName: boolean;
+  voucherLastName: boolean;
   voucherEmail: boolean;
   voucherMobileNumber: boolean;
   redemptionType: boolean;
@@ -21,8 +21,8 @@ const initialState: VoucherState = widget
       voucherType: 1,
       expiryTerm: 1,
       fees: 99,
-      voucherFirstname: false,
-      voucherLastname: false,
+      voucherFirstName: false,
+      voucherLastName: false,
       voucherEmail: false,
       voucherMobileNumber: false,
       redemptionType: false,
@@ -45,11 +45,11 @@ const VoucherSlice = createSlice({
     setFees: (state, action: PayloadAction<number>) => {
       state.fees = action.payload;
     },
-    setVoucherFirstname: (state, action: PayloadAction<boolean>) => {
-      state.voucherFirstname = action.payload;
+    setVoucherFirstName: (state, action: PayloadAction<boolean>) => {
+      state.voucherFirstName = action.payload;
     },
-    setVoucherLastname: (state, action: PayloadAction<boolean>) => {
-      state.voucherLastname = action.payload;
+    setVoucherLastName: (state, action: PayloadAction<boolean>) => {
+      state.voucherLastName = action.payload;
     },
     setVoucherEmail: (state, action: PayloadAction<boolean>) => {
       state.voucherEmail = action.payload;
@@ -75,8 +75,8 @@ export const {
   setVoucherType,
   setExpiryTerm,
   setFees,
-  setVoucherFirstname,
-  setVoucherLastname,
+  setVoucherFirstName,
+  setVoucherLastName,
   setVoucherEmail,
   setVoucherMobileNumber,
   setRedemptionType,

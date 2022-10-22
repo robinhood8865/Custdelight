@@ -16,43 +16,43 @@ import { setMemebershipConfigration } from "../../Slices/membershipSlice";
 import { setVoucherConfigration } from "../../Slices/voucherSlice";
 import { setThemeConfigration } from "../../Slices/themeSlice";
 import { setSettingConfigration } from "../../Slices/settingSlice";
+import { setModuleConfigration } from "../../Slices/moduleSlice";
 
 const SignIn = (props: any) => {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
   const membership = useAppSelector((state) => state.membership);
   const navigate = useNavigate();
+
   const getData = (data: any) => {
-    const { __v, _id, ...tempdata } = data;
+    const { __v, _id, id, ...tempdata } = data;
     return tempdata;
   };
 
   const handleSubmit = (event: any) => {
     const email = event.target.email.value;
     const password = event.target.password.value;
-    const reloadData = (data: any) => {
+    const dispatchData = (data: any) => {
       const { module, theme, setting } = data;
-      const { membership, voucher } = module;
-      console.log("data", data);
-      console.log("module", module);
+      const { membership, voucher, membershipId, voucherId, ...tempModule } =
+        module;
 
-      const membershipData = getData(membership);
-      console.log("membership", membershipData);
+      const membershipData = getData(membership[0]);
       dispatch(setMemebershipConfigration(membershipData));
-
-      const voucherData = getData(voucher);
-      console.log("voucher", voucherData);
+      const voucherData = getData(voucher[0]);
       dispatch(setVoucherConfigration(voucherData));
-
+      const moduleData = getData(tempModule);
+      dispatch(setModuleConfigration(moduleData));
       const themeData = getData(theme);
-      console.log("theme", themeData);
-      dispatch(setMemebershipConfigration(themeData));
-
+      dispatch(setThemeConfigration(getData(themeData)));
       const settingData = getData(setting);
-      console.log("setting", settingData);
       dispatch(setSettingConfigration(settingData));
       const widget = {
-        module: { membership: membershipData, voucher: voucherData },
+        module: {
+          membership: membershipData,
+          voucher: voucherData,
+          ...moduleData,
+        },
         theme: themeData,
         setting: settingData,
       };
@@ -67,7 +67,15 @@ const SignIn = (props: any) => {
         );
 
         const widget = response.widgetdata;
-        const loadData = reloadData(widget);
+        console.log(
+          "🚀 ~ file: SignIn.tsx ~ line 69 ~ handleSubmit ~ widget",
+          widget
+        );
+        const loadData = dispatchData(widget);
+        console.log(
+          "🚀 ~ file: SignIn.tsx ~ line 74 ~ handleSubmit ~ loadData",
+          loadData
+        );
         if (response.accessToken) {
           localStorage.setItem("accessToken", response.accessToken);
           localStorage.setItem("user", JSON.stringify(response.user));

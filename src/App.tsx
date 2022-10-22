@@ -26,11 +26,11 @@ import { useAppSelector } from "./App/hooks";
 // import ToastProvider from "./Components/Toast/ToastProvider";
 
 function App() {
-  const membership = useAppSelector((state) => state.membership);
+  // const membership = useAppSelector((state) => state.membership);
 
-  useEffect(() => {
-    console.log("----------------------------------------------", membership);
-  }, [membership]);
+  // useEffect(() => {
+  //   console.log("----------------------------------------------", membership);
+  // }, [membership]);
 
   return (
     <Provider store={store}>

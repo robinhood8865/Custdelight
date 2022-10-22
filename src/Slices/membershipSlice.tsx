@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { json } from "stream/consumers";
-import ApiService from "../Services/ApiService";
 
-export interface IMembershipState {
+export interface MembershipState {
   membershipType: number;
   paymentTerm: number;
   fees: number;
-  useFirstname: boolean;
-  useLastname: boolean;
+  useFirstName: boolean;
+  useLastName: boolean;
   useEmail: boolean;
   useMobileNumber: boolean;
   cancellation: number;
@@ -16,14 +14,14 @@ export interface IMembershipState {
 
 const widget = localStorage.getItem("widget");
 
-const initialState: IMembershipState = widget
+const initialState: MembershipState = widget
   ? JSON.parse(widget).module.membership
   : {
       membershipType: 1,
       paymentTerm: 1,
       fees: 99.99,
-      useFirstname: false,
-      useLastname: false,
+      useFirstName: false,
+      useLastName: false,
       useEmail: false,
       useMobileNumber: false,
       cancellation: 1,
@@ -36,7 +34,7 @@ const MembershipSlice = createSlice({
   reducers: {
     setMemebershipConfigration: (
       state,
-      action: PayloadAction<IMembershipState>
+      action: PayloadAction<MembershipState>
     ) => action.payload,
 
     setMembershipType: (state, action: PayloadAction<number>) => {
@@ -48,11 +46,11 @@ const MembershipSlice = createSlice({
     setFees: (state, action: PayloadAction<number>) => {
       state.fees = action.payload;
     },
-    setUseFirstname: (state, action: PayloadAction<boolean>) => {
-      state.useFirstname = action.payload;
+    setUseFirstName: (state, action: PayloadAction<boolean>) => {
+      state.useFirstName = action.payload;
     },
-    setUseLastname: (state, action: PayloadAction<boolean>) => {
-      state.useLastname = action.payload;
+    setUseLastName: (state, action: PayloadAction<boolean>) => {
+      state.useLastName = action.payload;
     },
     setUseEmail: (state, action: PayloadAction<boolean>) => {
       state.useEmail = action.payload;
@@ -76,8 +74,8 @@ export const {
   setMembershipType,
   setPaymentTerm,
   setFees,
-  setUseFirstname,
-  setUseLastname,
+  setUseFirstName,
+  setUseLastName,
   setUseEmail,
   setUseMobileNumber,
   setCancellation,

@@ -27,7 +27,7 @@ const MembershipSettings = () => {
           onChange={(e: any) => {
             dispatch(setCancellation(parseInt(e)));
           }}
-          value={cancellation.toString()}
+          value={"" + cancellation}
         >
           {cancellationOptions.map((cancellationOption) => (
             <Option value={cancellationOption.index}>

@@ -51,6 +51,19 @@ const ColorInput = (props: any) => {
           className="px-3 py-3 relative bg-white rounded-[8px] text-[14px] leading-[21px] font-[400] border-[#EAEAEA] border-[1px] shadow outline-none focus:outline-none focus:ring w-full pr-10 "
         />
         <div
+          className="absolute right-14 top-3 rounded  w-[100px] h-[20px]"
+          style={{
+            backgroundColor:
+              name === "Header"
+                ? headerColor
+                : name === "Button"
+                ? buttonColor
+                : name === "Widget"
+                ? widgetColor
+                : "",
+          }}
+        ></div>
+        <div
           onClick={() => {
             setSelectState(name);
           }}

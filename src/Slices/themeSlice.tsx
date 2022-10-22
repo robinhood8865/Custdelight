@@ -1,4 +1,3 @@
-import { color } from "@material-tailwind/react/types/components/alert";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ThemeState {

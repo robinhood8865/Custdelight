@@ -25,6 +25,7 @@ const BuilderNavBar = () => {
       module: {
         membership,
         voucher,
+        ...module,
       },
       theme,
       setting,

@@ -14,6 +14,7 @@ const MembershipType = () => {
 
   const membership = useAppSelector((state) => state.membership);
   const { membershipType, paymentTerm, fees } = membership;
+
   console.log(
     "🚀 ~ file: MembershipType.tsx ~ line 17 ~ MembershipType ~ membershipType, paymentTerm, fees",
     membershipType,

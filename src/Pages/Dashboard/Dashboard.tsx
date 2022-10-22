@@ -21,7 +21,9 @@ const Dashboard = () => {
             <div className="w-[185px] mt-[25px] ml-[40px] ">
               <Button
                 onClick={() => {
-                  navigate("/builder/modules");
+                  localStorage.getItem("accessToken")
+                    ? navigate("/builder/modules")
+                    : navigate("/");
                 }}
                 className="w-full h-[135px] bg-gradient-to-b from-user-dash-grad1 to-user-dash-grad2 rounded-[10px] flex items-center justify-center"
               >
