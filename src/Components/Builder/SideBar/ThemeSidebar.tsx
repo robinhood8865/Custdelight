@@ -2,6 +2,7 @@
 // import ModulesBtn from "./ModulesBtn";
 import ColorInput from "../Components/ColorInput";
 import CloseBtn from "../Components/CloseBtn";
+import IconInput from "../Components/IconInput";
 
 const ThemeSidebar = () => {
   return (
@@ -11,7 +12,7 @@ const ThemeSidebar = () => {
           <ColorInput name="Header" />
           <ColorInput name="Button" />
           <ColorInput name="Widget" />
-          <ColorInput name="WidgetIcon" />
+          <IconInput name="WidgetIcon" />
         </div>
       </div>
       <div></div>

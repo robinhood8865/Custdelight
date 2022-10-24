@@ -17,7 +17,7 @@ const initialState: ThemeState = widget
       headerColor: "#812FBF",
       buttonColor: "#812FBF",
       widgetColor: "#812FBF",
-      widgetIcon: "Icon",
+      widgetIcon: "custdelight.png",
     };
 
 const ThemeSlice = createSlice({

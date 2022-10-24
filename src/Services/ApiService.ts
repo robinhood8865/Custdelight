@@ -32,6 +32,7 @@ const SERVER_URL = process.env.REACT_APP_BACKEND_API;
 const API_VERSION = "api";
 const END_POINTS = {
   UPDATE_WIDGET: `${SERVER_URL}/${API_VERSION}/widget`,
+  UPLOAD: `${SERVER_URL}/${API_VERSION}/upload/icon`,
   // USERS: `${SERVER_URL}/${API_VERSION}/users`,
 };
 
@@ -43,6 +44,14 @@ class ApiService {
       method: "post",
       data,
     });
+  };
+  static uploadIcon = async (data: any) => {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    return Axios.post(END_POINTS.UPLOAD, data, config);
   };
 }
 
