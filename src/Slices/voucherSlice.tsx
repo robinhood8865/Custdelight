@@ -26,14 +26,14 @@ const initialState: VoucherState =
   // :
   {
     vouchers: [
-      {
-        voucherTitle: "",
-        voucherType: 0,
-        voucherExpiryTerm: 1,
-        voucherUsualPrice: 200,
-        voucherDiscountedPrice: 200,
-        voucherTerms: "",
-      },
+      // {
+      //   voucherTitle: "",
+      //   voucherType: 0,
+      //   voucherExpiryTerm: 1,
+      //   voucherUsualPrice: 200,
+      //   voucherDiscountedPrice: 200,
+      //   voucherTerms: "",
+      // },
     ],
     voucherFirstName: false,
     voucherLastName: false,
@@ -50,9 +50,29 @@ const VoucherSlice = createSlice({
     setVoucherconfiguration: (state, action: PayloadAction<VoucherState>) =>
       action.payload,
     setVoucher: (state, action: PayloadAction<Voucher>) => {
-      console.log(state.vouchers.length);
+      state.vouchers.push(action.payload);
+
       // state.vouchers[] = action.payload;
     },
+    changeVoucher: (state, action: PayloadAction<any>) => {
+      const { index, voucher } = action.payload;
+      console.log("changevoucher");
+      state.vouchers[index] = voucher;
+      // state.vouchers[] = action.payload;
+    },
+    deleteVoucher: (state, action: PayloadAction<number>) => {
+      console.log("deletevoucher");
+      const tempVoucher = [];
+      const originVoucher = state.vouchers;
+      for (let i = 0; i < originVoucher.length; i++) {
+        if (i === action.payload) continue;
+        tempVoucher.push(originVoucher[i]);
+      }
+      state.vouchers = tempVoucher;
+
+      // state.vouchers[] = action.payload;
+    },
+
     setVoucherType: (state, action: PayloadAction<number>) => {
       state.vouchers[0].voucherType = action.payload;
     },
@@ -109,5 +129,7 @@ export const {
   setRedemptionType,
   setRedemption,
   setVoucherconfiguration,
+  deleteVoucher,
+  changeVoucher,
 } = actions;
 export default reducer;

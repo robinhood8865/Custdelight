@@ -1,59 +1,72 @@
-import {
-  Input,
-  Select,
-  Option,
-  Textarea,
-  Button,
-} from "@material-tailwind/react";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../App/hooks";
 
-import { setVoucherType } from "../../../Slices/voucherSlice";
 import AddVoucher from "./AddVoucher";
 
 const VoucherItem = () => {
   const dispatch = useAppDispatch();
   const voucher = useAppSelector((state) => state.voucher);
   const [addVoucher, setAddVoucher] = useState(false);
+  const [voucherIndex, setVoucherIndex] = useState(0);
   const { vouchers } = voucher;
+  console.log(vouchers);
   let voucherfees: number = 0;
 
   return (
     <div className=" w-full h-full  ">
-      {addVoucher && <AddVoucher setAddVoucher={setAddVoucher} />}
-      {/* <div className="ListofVoucher border-b-[1px] border-user-border">
-        <div className="mt-[22px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
-          List of Vouchers
-        </div>
-        <div className="Vouchers flex mt-[12px] mb-[12px] justify-between items-center text-[14px] leading-[21px] font-[400]">
-          <div className="flex justify-between w-[238px]">
-            <div className="VoucherName">eVoucher</div>
-            <div className="VoucherPrice">$99.90</div>
+      {addVoucher && (
+        <AddVoucher setAddVoucher={setAddVoucher} voucherIndex={voucherIndex} />
+      )}
+      {!addVoucher && vouchers.length !== 0 && (
+        <div className="ListofVoucher border-b-[1px] border-user-border">
+          <div className="mt-[22px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
+            List of Vouchers
           </div>
+          {vouchers.map((voucher, index) => (
+            <div className="Vouchers flex mt-[12px] mb-[12px] justify-between items-center text-[14px] leading-[21px] font-[400]">
+              <div className="flex justify-between w-[238px]">
+                <div className="VoucherName">{voucher.voucherTitle}</div>
+                <div className="VoucherPrice">
+                  {voucher.voucherType === 1
+                    ? "Free"
+                    : "$" + voucher.voucherUsualPrice}
+                </div>
+              </div>
 
-          <div className="EditVoucher mr-[5px] ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8C16 12.4183 12.4183 16 8 16ZM9.58579 7H4C3.44772 7 3 7.44772 3 8C3 8.55229 3.44772 9 4 9H9.58579L7.29289 11.2929C6.90237 11.6834 6.90237 12.3166 7.29289 12.7071C7.68342 13.0976 8.31658 13.0976 8.70711 12.7071L12.7071 8.70711C13.0976 8.31658 13.0976 7.68342 12.7071 7.29289L8.70711 3.29289C8.31658 2.90237 7.68342 2.90237 7.29289 3.29289C6.90237 3.68342 6.90237 4.31658 7.29289 4.70711L9.58579 7Z"
-                fill="#30313D"
-              />
-            </svg>
-          </div>
+              <div
+                onClick={() => {
+                  setVoucherIndex(index + 1);
+                  setAddVoucher(true);
+                }}
+                className={`EditVoucher cursor-pointer mr-[5px] id=${
+                  index + 1
+                }`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8C16 12.4183 12.4183 16 8 16ZM9.58579 7H4C3.44772 7 3 7.44772 3 8C3 8.55229 3.44772 9 4 9H9.58579L7.29289 11.2929C6.90237 11.6834 6.90237 12.3166 7.29289 12.7071C7.68342 13.0976 8.31658 13.0976 8.70711 12.7071L12.7071 8.70711C13.0976 8.31658 13.0976 7.68342 12.7071 7.29289L8.70711 3.29289C8.31658 2.90237 7.68342 2.90237 7.29289 3.29289C6.90237 3.68342 6.90237 4.31658 7.29289 4.70711L9.58579 7Z"
+                    fill="#30313D"
+                  />
+                </svg>
+              </div>
+            </div>
+          ))}
         </div>
-      </div> */}
+      )}
       {!addVoucher && (
         <div className="AddAnotherVoucher mt-[31px]">
           <div
             onClick={() => {
               setAddVoucher(true);
+              setVoucherIndex(0);
             }}
             className="flex cursor-pointer"
           >

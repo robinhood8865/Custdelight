@@ -65,7 +65,7 @@ const Configuration = () => {
                         type === 0 ? "text-user-main" : "text-black"
                       } mt-[7px]  flex justify-center text-[12px] font-bold leading-[15px]`}
                     >
-                      Type
+                      {moduleIndex === 1 ? "Type" : "Item"}
                     </div>
                   </div>
                 </div>

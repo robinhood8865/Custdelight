@@ -1,6 +1,6 @@
 import axios from "axios";
-
-const API_URL = "http://149.102.148.40:5000/api/auth";
+const SERVER_URL = process.env.REACT_APP_BACKEND_API;
+const API_URL = SERVER_URL + "/api/auth";
 
 export const register = (
   firstname: string,
