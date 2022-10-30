@@ -4,12 +4,12 @@ import ConfigCloseBtn from "../Components/ConfigCloseBtn";
 import { useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../App/hooks";
 import MembershipType from "./MembershipType";
-import VoucherType from "./VoucherType";
 import MembershipUser from "./MembershipUser";
 import VoucherUser from "./VoucherUser";
 import VoucherSettings from "./VoucherSettings";
+import VoucherItem from "./VoucherItem";
 
-const Configration = () => {
+const Configuration = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const moduleIndex = useAppSelector((state) => state.module.moduleIndex);
@@ -25,7 +25,7 @@ const Configration = () => {
   return (
     <div>
       {getCurrentPage("modules") && showConfig && (
-        <div className="h-full min-h-screen w-[340px] bg-white text-black border-[1px]  ">
+        <div className="h-full min-h-screen w-[340px] bg-[#FCFCFC] text-black border-[1px]  ">
           <div className="h-[67px] ml-[26px] mr-[16px] flex justify-between items-center">
             <div className="font-bold text-[16px] leading-[20px] ">
               Configuration
@@ -136,7 +136,7 @@ const Configration = () => {
             </div>
             {type === 0 &&
               ((moduleIndex === 1 && <MembershipType />) ||
-                (moduleIndex === 2 && <VoucherType />))}
+                (moduleIndex === 2 && <VoucherItem />))}
             {type === 1 &&
               ((moduleIndex === 1 && <MembershipUser />) ||
                 (moduleIndex === 2 && <VoucherUser />))}
@@ -181,4 +181,4 @@ const Configration = () => {
   );
 };
 
-export default Configration;
+export default Configuration;

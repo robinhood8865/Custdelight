@@ -24,7 +24,7 @@ const ThemeSlice = createSlice({
   name: "Theme",
   initialState,
   reducers: {
-    setThemeConfigration: (state, action: PayloadAction<ThemeState>) =>
+    setThemeconfiguration: (state, action: PayloadAction<ThemeState>) =>
       action.payload,
     setStyleIndex: (state, action: PayloadAction<number>) => {
       state.styleIndex = action.payload;
@@ -52,6 +52,6 @@ export const {
   setButtonColor,
   setWidgetColor,
   setwidgetIcon,
-  setThemeConfigration,
+  setThemeconfiguration,
 } = actions;
 export default reducer;

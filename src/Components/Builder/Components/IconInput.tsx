@@ -8,7 +8,7 @@ console.log("🚀 ~ file: IconInput.tsx ~ line 6 ~ custdelight", custdelight);
 // import main_picture from "../../../src/Assets/Images/dash_picture.png";
 export const IconPath = (IconName: string = "custdelight.png") => {
   // return `../../../Assets/uploads/icon/${IconName}`;
-  return `http://localhost:5000/static/uploads/icon/${IconName}`;
+  return `http://149.102.148.40:5000/static/uploads/icon/${IconName}`;
 };
 const IconInput = (props: any) => {
   const { styleIndex, widgetIcon } = useAppSelector((state) => state.theme);

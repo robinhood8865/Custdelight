@@ -20,7 +20,7 @@ const ModuleSlice = createSlice({
   name: "Module",
   initialState,
   reducers: {
-    setModuleConfigration: (state, action: PayloadAction<ModuleState>) =>
+    setModuleconfiguration: (state, action: PayloadAction<ModuleState>) =>
       action.payload,
     setMemberShip: (state, action: PayloadAction<boolean>) => {
       state.visibleMemberShip = action.payload;
@@ -40,7 +40,7 @@ const ModuleSlice = createSlice({
 const { reducer, actions } = ModuleSlice;
 
 export const {
-  setModuleConfigration,
+  setModuleconfiguration,
   setMemberShip,
   setVouchers,
   setPayment,

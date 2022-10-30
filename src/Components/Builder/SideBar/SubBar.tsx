@@ -32,9 +32,9 @@ const SubBar = () => {
   return (
     <div className="relative h-full overflow-auto overflow-x-hidden ">
       {!getCurrentPage("users") && showSubbar && (
-        <div className="h-full  w-[340px] bg-white text-black border-[1px] border-l-0 border-b-0 border-user-border">
+        <div className="h-full  w-[340px] bg-[#FCFCFC] text-black border-[1px] border-l-0 border-b-0 border-user-border">
           <div className="absolute w-full">
-            <div className=" w-full h-[67px] pl-[28px] pr-[16px] flex justify-between items-center bg-white border-r-[1px]">
+            <div className=" w-full h-[67px] pl-[28px] pr-[16px] flex justify-between items-center bg-[#FCFCFC] border-r-[1px]">
               <div className="flex items-center">
                 {getCurrentPage("settings") && settingIndex !== 0 && (
                   <div
@@ -80,7 +80,7 @@ const SubBar = () => {
             </div>
           </div>
 
-          <div className="mt-[67px]">
+          <div className="mt-[67px] bg-[#FCFCFC">
             {getCurrentPage("modules") && <ModulesSidebar />}
             {getCurrentPage("theme") && <ThemeSidebar />}
             {/* {getCurrentPage("users") && "Users"} */}

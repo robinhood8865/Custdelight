@@ -33,7 +33,7 @@ const MembershipType = () => {
 
   return (
     <div className=" w-full h-full  ">
-      <div className="mt-[34px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
+      <div className="mt-[22px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
         MemberShip Type
       </div>
       <div className="w-full h-[48px]">
@@ -53,7 +53,7 @@ const MembershipType = () => {
       </div>
       {membershipType === 2 && (
         <div>
-          <div className="mt-[27px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
+          <div className="mt-[22px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
             Payment Terms
           </div>
           <div className=" w-full h-[48px]">
@@ -71,7 +71,7 @@ const MembershipType = () => {
               ))}
             </Select>
           </div>
-          <div className="mt-[28px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
+          <div className="mt-[22px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
             Fees
           </div>
           <div className="relative">

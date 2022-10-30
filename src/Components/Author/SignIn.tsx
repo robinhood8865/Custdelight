@@ -12,11 +12,11 @@ import { login } from "../../Services/auth.service";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
-import { setMemebershipConfigration } from "../../Slices/membershipSlice";
-import { setVoucherConfigration } from "../../Slices/voucherSlice";
-import { setThemeConfigration } from "../../Slices/themeSlice";
-import { setSettingConfigration } from "../../Slices/settingSlice";
-import { setModuleConfigration } from "../../Slices/moduleSlice";
+import { setMemebershipconfiguration } from "../../Slices/membershipSlice";
+import { setVoucherconfiguration } from "../../Slices/voucherSlice";
+import { setThemeconfiguration } from "../../Slices/themeSlice";
+import { setSettingconfiguration } from "../../Slices/settingSlice";
+import { setModuleconfiguration } from "../../Slices/moduleSlice";
 
 const SignIn = (props: any) => {
   const [show, setShow] = useState(false);
@@ -38,15 +38,15 @@ const SignIn = (props: any) => {
         module;
 
       const membershipData = getData(membership[0]);
-      dispatch(setMemebershipConfigration(membershipData));
+      dispatch(setMemebershipconfiguration(membershipData));
       const voucherData = getData(voucher[0]);
-      dispatch(setVoucherConfigration(voucherData));
+      dispatch(setVoucherconfiguration(voucherData));
       const moduleData = getData(tempModule);
-      dispatch(setModuleConfigration(moduleData));
+      dispatch(setModuleconfiguration(moduleData));
       const themeData = getData(theme);
-      dispatch(setThemeConfigration(getData(themeData)));
+      dispatch(setThemeconfiguration(getData(themeData)));
       const settingData = getData(setting);
-      dispatch(setSettingConfigration(settingData));
+      dispatch(setSettingconfiguration(settingData));
       const widget = {
         module: {
           membership: membershipData,

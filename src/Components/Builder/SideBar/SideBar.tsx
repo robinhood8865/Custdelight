@@ -21,7 +21,7 @@ const SideBar = () => {
   });
   console.log("index", index);
   return (
-    <div className="h-full w-[200px] border-user-border border-[1px] bg-white">
+    <div className="h-full w-[200px] border-user-border border-[1px] bg-[#FCFCFC]">
       <div className="mt-[82px] h-[full]"></div>
       <div className="flex justify-center mb-[14px]">
         <ItemButton

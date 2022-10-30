@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-
-import Configration from "../Components/Builder/Configration/Configration";
+import Configuration from "../Components/Builder/Configuration/Configuration";
 import SideBar from "../Components/Builder/SideBar/SideBar";
 import SubBar from "../Components/Builder/SideBar/SubBar";
 import BuilderNavBar from "../Components/Nav/BuilderNavBar";
@@ -23,7 +22,7 @@ const BuilderLayout = () => {
             <Outlet />
           </div>
 
-          <Configration />
+          <Configuration />
         </div>
       </div>
     </div>

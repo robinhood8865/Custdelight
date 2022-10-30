@@ -10,12 +10,11 @@ import {
 const VoucherSettings = () => {
   const dispatch = useAppDispatch();
   const voucher = useAppSelector((state) => state.voucher);
-  const { redemptionType, redemption, voucherTerms } = voucher;
+  const { redemptionType, redemption } = voucher;
   let voucherRedemption = 0;
-  const [vTerm, setvTerm] = useState(voucherTerms);
 
   return (
-    <div className=" w-full h-full  ">
+    <div className="relative w-full h-full  ">
       <div className="mb-[20px] font-bold text-[16px] text-black leading-[20px]">
         Redemption Minimum
       </div>
@@ -60,25 +59,15 @@ const VoucherSettings = () => {
           />
         </div>
       )}
-      <div className="mt-[20px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
-        Vouchers Terms
+
+      <div className="absolute w-full top-[435px]">
+        <div className="mb-[20px] font-bold text-[16px] text-black leading-[20px]">
+          Stripe Integration
+        </div>
+        <Button className="bg-user-main w-full h-[50px] flex items-center justify-center text-[16px] text-white font-bold leading-[20px]">
+          Connected
+        </Button>
       </div>
-      <Input
-        onBlur={(e: any) => {
-          dispatch(setVoucherTerms(vTerm));
-        }}
-        onChange={(e: any) => {
-          setvTerm(e.target.value);
-        }}
-        value={vTerm}
-        label="Vouchers Terms"
-      />
-      <div className="mt-[20px] mb-[20px] font-bold text-[16px] text-black leading-[20px]">
-        Stripe Integration
-      </div>
-      <Button className="bg-user-main w-full h-[50px] flex items-center justify-center text-[16px] text-white font-bold leading-[20px]">
-        Connected
-      </Button>
     </div>
   );
 };

@@ -28,7 +28,7 @@ const SettingSlice = createSlice({
   name: "Setting",
   initialState,
   reducers: {
-    setSettingConfigration: (state, action: PayloadAction<SettingState>) =>
+    setSettingconfiguration: (state, action: PayloadAction<SettingState>) =>
       action.payload,
     setSettingIndex: (state, action: PayloadAction<number>) => {
       state.settingIndex = action.payload;
@@ -64,6 +64,6 @@ export const {
   setBranding,
   setSenderName,
   setSenderEmail,
-  setSettingConfigration,
+  setSettingconfiguration,
 } = actions;
 export default reducer;

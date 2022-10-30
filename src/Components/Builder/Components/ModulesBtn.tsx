@@ -12,11 +12,11 @@ import { Button } from "@material-tailwind/react";
 const ModulesBtn = (props: any) => {
   const dispatch = useAppDispatch();
 
-  const { name, visible, enable } = props;
+  const { name, visible, enable, select } = props;
 
   return (
-    <div className="mb-[10px]">
-      <Button
+    <div className="mb-[10px] ">
+      <button
         onClick={() => {
           if (enable === true) {
             // console.log(enable, visible);
@@ -35,8 +35,8 @@ const ModulesBtn = (props: any) => {
             }
           }
         }}
-        className={`${
-          enable === true ? "bg-white" : "bg-user-border"
+        className={`${enable === true ? "bg-white" : "bg-user-border"} ${
+          select === true ? "border-user-main" : "border-user-border"
         } w-[280px] h-[100px] rounded-[10px] p-0 border-[1px] border-user-border `}
       >
         <div className="w-full h-full flex justify-between items-center">
@@ -164,7 +164,7 @@ const ModulesBtn = (props: any) => {
             )}
           </div>
         </div>
-      </Button>
+      </button>
     </div>
   );
 };

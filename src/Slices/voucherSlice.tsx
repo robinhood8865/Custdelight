@@ -1,49 +1,75 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface VoucherState {
+export interface Voucher {
+  voucherTitle: string;
   voucherType: number;
-  expiryTerm: number;
-  fees: number;
+  voucherExpiryTerm: number;
+  voucherUsualPrice: number;
+  voucherDiscountedPrice: number;
+  voucherTerms: string;
+}
+export interface VoucherState {
+  vouchers: Voucher[];
   voucherFirstName: boolean;
   voucherLastName: boolean;
   voucherEmail: boolean;
   voucherMobileNumber: boolean;
   redemptionType: boolean;
   redemption: number;
-  voucherTerms: string;
 }
 
 const widget = localStorage.getItem("widget");
 
-const initialState: VoucherState = widget
-  ? JSON.parse(widget).module.voucher
-  : {
-      voucherType: 1,
-      expiryTerm: 1,
-      fees: 99,
-      voucherFirstName: false,
-      voucherLastName: false,
-      voucherEmail: false,
-      voucherMobileNumber: false,
-      redemptionType: false,
-      redemption: 200,
-      voucherTerms: "https://www.xxx.com",
-    };
+const initialState: VoucherState =
+  // widget
+  //   ? JSON.parse(widget).module.voucher
+  // :
+  {
+    vouchers: [
+      {
+        voucherTitle: "",
+        voucherType: 0,
+        voucherExpiryTerm: 1,
+        voucherUsualPrice: 200,
+        voucherDiscountedPrice: 200,
+        voucherTerms: "",
+      },
+    ],
+    voucherFirstName: false,
+    voucherLastName: false,
+    voucherEmail: false,
+    voucherMobileNumber: false,
+    redemptionType: false,
+    redemption: 200,
+  };
 
 const VoucherSlice = createSlice({
   name: "Voucher",
   initialState,
   reducers: {
-    setVoucherConfigration: (state, action: PayloadAction<VoucherState>) =>
+    setVoucherconfiguration: (state, action: PayloadAction<VoucherState>) =>
       action.payload,
+    setVoucher: (state, action: PayloadAction<Voucher>) => {
+      console.log(state.vouchers.length);
+      // state.vouchers[] = action.payload;
+    },
     setVoucherType: (state, action: PayloadAction<number>) => {
-      state.voucherType = action.payload;
+      state.vouchers[0].voucherType = action.payload;
     },
-    setExpiryTerm: (state, action: PayloadAction<number>) => {
-      state.expiryTerm = action.payload;
+    setVoucherTitle: (state, action: PayloadAction<string>) => {
+      state.vouchers[0].voucherTitle = action.payload;
     },
-    setFees: (state, action: PayloadAction<number>) => {
-      state.fees = action.payload;
+    setVoucherExpiryTerm: (state, action: PayloadAction<number>) => {
+      state.vouchers[0].voucherExpiryTerm = action.payload;
+    },
+    setvoucherUsualPrice: (state, action: PayloadAction<number>) => {
+      state.vouchers[0].voucherUsualPrice = action.payload;
+    },
+    setvoucherDiscountedPrice: (state, action: PayloadAction<number>) => {
+      state.vouchers[0].voucherDiscountedPrice = action.payload;
+    },
+    setVoucherTerms: (state, action: PayloadAction<string>) => {
+      state.vouchers[0].voucherTerms = action.payload;
     },
     setVoucherFirstName: (state, action: PayloadAction<boolean>) => {
       state.voucherFirstName = action.payload;
@@ -63,25 +89,25 @@ const VoucherSlice = createSlice({
     setRedemption: (state, action: PayloadAction<number>) => {
       state.redemption = action.payload;
     },
-    setVoucherTerms: (state, action: PayloadAction<string>) => {
-      state.voucherTerms = action.payload;
-    },
   },
 });
 
 const { reducer, actions } = VoucherSlice;
 
 export const {
+  setVoucher,
   setVoucherType,
-  setExpiryTerm,
-  setFees,
+  setVoucherTitle,
+  setVoucherExpiryTerm,
+  setvoucherDiscountedPrice,
+  setvoucherUsualPrice,
+  setVoucherTerms,
   setVoucherFirstName,
   setVoucherLastName,
   setVoucherEmail,
   setVoucherMobileNumber,
   setRedemptionType,
   setRedemption,
-  setVoucherTerms,
-  setVoucherConfigration,
+  setVoucherconfiguration,
 } = actions;
 export default reducer;

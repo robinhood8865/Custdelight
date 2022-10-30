@@ -32,7 +32,7 @@ const MembershipSlice = createSlice({
   name: "Membership",
   initialState,
   reducers: {
-    setMemebershipConfigration: (
+    setMemebershipconfiguration: (
       state,
       action: PayloadAction<MembershipState>
     ) => action.payload,
@@ -70,7 +70,7 @@ const MembershipSlice = createSlice({
 const { reducer, actions } = MembershipSlice;
 
 export const {
-  setMemebershipConfigration,
+  setMemebershipconfiguration,
   setMembershipType,
   setPaymentTerm,
   setFees,
