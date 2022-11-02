@@ -12,30 +12,28 @@ const BuilderNavBar = () => {
   const membership = useAppSelector((state) => state.membership);
   const voucher = useAppSelector((state) => state.voucher);
   const module = useAppSelector((state) => state.module);
+
   const theme = useAppSelector((state) => state.theme);
   const setting = useAppSelector((state) => state.setting);
 
   const onPublish = async (e: any) => {
     e.preventDefault();
     const user = localStorage.getItem("user");
-
     const userObj = user && JSON.parse(user);
     const widgetId = userObj.widgetId1;
+
     const widget = {
       module: {
-        membership,
-        voucher,
         ...module,
+        membership: membership,
+        voucher: voucher,
       },
       theme,
       setting,
     };
 
     const data = { widgetId, widget };
-    console.log(
-      "🚀 ~ file: BuilderNavBar.tsx ~ line 20 ~ onPublish ~ data",
-      data
-    );
+
     const error = await ApiService.updateWidget(data);
     console.log("res", error);
     localStorage.removeItem("widget");

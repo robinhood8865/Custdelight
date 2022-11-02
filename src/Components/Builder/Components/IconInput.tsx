@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../App/hooks";
 import { setStyleIndex, setwidgetIcon } from "../../../Slices/themeSlice";
 import ApiService from "../../../Services/ApiService";
@@ -12,7 +12,7 @@ export const IconPath = (IconName: string = "custdelight.png") => {
   return `${SERVER_URL}/static/uploads/icon/${IconName}`;
 };
 const IconInput = (props: any) => {
-  const { styleIndex, widgetIcon } = useAppSelector((state) => state.theme);
+  const { widgetIcon } = useAppSelector((state) => state.theme);
   console.log(
     "🚀 ~ file: IconInput.tsx ~ line 11 ~ IconInput ~ widgetIcon",
     widgetIcon

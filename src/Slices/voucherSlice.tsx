@@ -25,16 +25,7 @@ const initialState: VoucherState =
   //   ? JSON.parse(widget).module.voucher
   // :
   {
-    vouchers: [
-      // {
-      //   voucherTitle: "",
-      //   voucherType: 0,
-      //   voucherExpiryTerm: 1,
-      //   voucherUsualPrice: 200,
-      //   voucherDiscountedPrice: 200,
-      //   voucherTerms: "",
-      // },
-    ],
+    vouchers: [],
     voucherFirstName: false,
     voucherLastName: false,
     voucherEmail: false,

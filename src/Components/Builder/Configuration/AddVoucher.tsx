@@ -19,11 +19,15 @@ import {
 
 const AddVoucher = (props: any) => {
   const { setAddVoucher, voucherIndex } = props;
+  console.log(
+    "🚀 ~ file: AddVoucher.tsx ~ line 22 ~ AddVoucher ~ voucherIndex",
+    voucherIndex
+  );
 
   const dispatch = useAppDispatch();
   const voucher = useAppSelector((state) => state.voucher);
   const { vouchers } = voucher;
-  const selectedVoucher = vouchers[voucherIndex - 1];
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
 
@@ -37,13 +41,13 @@ const AddVoucher = (props: any) => {
   const [term, setTerm] = useState("");
 
   useEffect(() => {
-    if (voucherIndex !== 0) {
-      setTitle(selectedVoucher.voucherTitle);
-      setType(selectedVoucher.voucherType);
-      setExpiryTerm(selectedVoucher.voucherExpiryTerm);
-      setUsualPrice(selectedVoucher.voucherUsualPrice);
-      setDiscountedPrice(selectedVoucher.voucherDiscountedPrice);
-      setTerm(selectedVoucher.voucherTerms);
+    if (voucherIndex !== -1) {
+      setTitle(vouchers[voucherIndex].voucherTitle);
+      setType(vouchers[voucherIndex].voucherType);
+      setExpiryTerm(vouchers[voucherIndex].voucherExpiryTerm);
+      setUsualPrice(vouchers[voucherIndex].voucherUsualPrice);
+      setDiscountedPrice(vouchers[voucherIndex].voucherDiscountedPrice);
+      setTerm(vouchers[voucherIndex].voucherTerms);
     }
   }, []);
 
@@ -189,9 +193,9 @@ const AddVoucher = (props: any) => {
               voucherDiscountedPrice: discountedPrice,
               voucherTerms: term,
             };
-            if (voucherIndex === 0) dispatch(setVoucher(voucher));
+            if (voucherIndex === -1) dispatch(setVoucher(voucher));
             else {
-              const index = voucherIndex - 1;
+              const index = voucherIndex;
               const data = { voucher, index };
               dispatch(changeVoucher(data));
             }
@@ -203,7 +207,7 @@ const AddVoucher = (props: any) => {
         </Button>
         <div
           onClick={() => {
-            if (voucherIndex !== 0) handleOpen();
+            if (voucherIndex !== -1) handleOpen();
           }}
           className="cursor-pointer mr-[8px]"
         >
@@ -240,7 +244,7 @@ const AddVoucher = (props: any) => {
               variant="gradient"
               color="green"
               onClick={() => {
-                dispatch(deleteVoucher(voucherIndex - 1));
+                dispatch(deleteVoucher(voucherIndex));
                 handleOpen();
                 setAddVoucher(false);
               }}

@@ -21,7 +21,6 @@ import { setModuleconfiguration } from "../../Slices/moduleSlice";
 const SignIn = (props: any) => {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
-  const membership = useAppSelector((state) => state.membership);
   const navigate = useNavigate();
 
   const getData = (data: any) => {
@@ -61,21 +60,8 @@ const SignIn = (props: any) => {
 
     login(email, password).then(
       (response) => {
-        console.log(
-          "🚀 ~ file: SignIn.tsx ~ line 27 ~ handleSubmit ~ response",
-          response
-        );
-
         const widget = response.widgetdata;
-        console.log(
-          "🚀 ~ file: SignIn.tsx ~ line 69 ~ handleSubmit ~ widget",
-          widget
-        );
         const loadData = dispatchData(widget);
-        console.log(
-          "🚀 ~ file: SignIn.tsx ~ line 74 ~ handleSubmit ~ loadData",
-          loadData
-        );
         if (response.accessToken) {
           localStorage.setItem("accessToken", response.accessToken);
           localStorage.setItem("user", JSON.stringify(response.user));

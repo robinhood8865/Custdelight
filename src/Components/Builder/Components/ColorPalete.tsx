@@ -2,10 +2,9 @@ import { useEffect } from "react";
 import { ColorPicker, useColor } from "react-color-palette";
 
 import "react-color-palette/lib/css/styles.css";
-import { useAppSelector, useAppDispatch } from "../../../App/hooks";
-import CloseBtn from "./CloseBtn";
+import { useAppDispatch } from "../../../App/hooks";
+
 import {
-  setStyleIndex,
   setHeaderColor,
   setButtonColor,
   setWidgetColor,
@@ -41,64 +40,6 @@ const ColorPalete = (props: any) => {
   );
 
   const [color, setColor] = useColor("hex", mycolor);
-
-  // const hexToRgb = (hex: string): ColorRGB | null => {
-  //   var result = /^#?([a-f\d]{2}])([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-
-  //   return result
-  //     ? {
-  //         r: parseInt(result[1], 16),
-  //         g: parseInt(result[2], 16),
-  //         b: parseInt(result[3], 16),
-  //       }
-  //     : null;
-  // };
-
-  // const rgbToHsv = (rgb: ColorRGB): ColorHSV => {
-  //   const r = rgb.r / 255;
-  //   const g = rgb.g / 255;
-  //   const b = rgb.b / 255;
-
-  //   const max = Math.max(r, g, b),
-  //     min = Math.min(r, g, b);
-  //   let h = 0,
-  //     s = 0,
-  //     l = (max + min) / 2;
-
-  //   if (max === min) {
-  //     h = s = 0; // achromatic
-  //   } else {
-  //     const d = max - min;
-  //     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-
-  //     switch (max) {
-  //       case r:
-  //         h = (g - b) / d + (g < b ? 6 : 0);
-  //         break;
-  //       case g:
-  //         h = (b - r) / d + 2;
-  //         break;
-  //       case b:
-  //         h = (r - g) / d + 4;
-  //         break;
-  //     }
-
-  //     h /= 6;
-  //   }
-
-  //   h *= 360;
-  //   s *= 100;
-  //   l *= 100;
-
-  //   return { h, s, l };
-  // };
-
-  // const hexToColor = (hex: string) => {
-  //   const rgb = hexToRgb(hex);
-  //   let _color: Color = { hex, rgb: };
-  //   _color.hex = hex;
-  //   return _color;
-  // };
 
   useEffect(() => {
     switch (styleIndex) {

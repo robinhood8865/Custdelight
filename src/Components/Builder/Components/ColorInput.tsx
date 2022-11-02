@@ -1,10 +1,8 @@
-import { Input } from "@material-tailwind/react";
-import { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../App/hooks";
 import { setStyleIndex } from "../../../Slices/themeSlice";
 
 const ColorInput = (props: any) => {
-  const { styleIndex, headerColor, buttonColor, widgetColor } = useAppSelector(
+  const { headerColor, buttonColor, widgetColor } = useAppSelector(
     (state) => state.theme
   );
   const dispatch = useAppDispatch();

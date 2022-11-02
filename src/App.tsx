@@ -1,14 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-// import Author from "./Pages/Author";
 import Dashboard from "./Pages/Dashboard/Dashboard";
-
 import SignIn from "./Components/Author/SignIn";
 import SignUp from "./Components/Author/SignUp";
-
 import Subscription from "./Pages/Subscription";
-// import Builder from "./Pages/Builder/Builder";
 
 // Redux
 import { Provider } from "react-redux";
@@ -21,17 +16,8 @@ import Theme from "./Pages/Builder/Theme";
 import Settings from "./Pages/Builder/Settings";
 import Users from "./Pages/Builder/Users";
 import store from "./App/store";
-import { useAppSelector } from "./App/hooks";
-
-// import ToastProvider from "./Components/Toast/ToastProvider";
 
 function App() {
-  // const membership = useAppSelector((state) => state.membership);
-
-  // useEffect(() => {
-  //   console.log("----------------------------------------------", membership);
-  // }, [membership]);
-
   return (
     <Provider store={store}>
       <BrowserRouter>

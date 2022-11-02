@@ -7,10 +7,17 @@ const VoucherItem = () => {
   const dispatch = useAppDispatch();
   const voucher = useAppSelector((state) => state.voucher);
   const [addVoucher, setAddVoucher] = useState(false);
-  const [voucherIndex, setVoucherIndex] = useState(0);
+  const [voucherIndex, setVoucherIndex] = useState(-1);
   const { vouchers } = voucher;
-  console.log(vouchers);
-  let voucherfees: number = 0;
+  // console.log(
+  //   "🚀 ~ file: VoucherItem.tsx ~ line 12 ~ VoucherItem ~ vouchers",
+  //   vouchers
+  // );
+  // if (vouchers.length !== 0) setVoucherIndex(vouchers.length);
+  // console.log(
+  //   "🚀 ~ file: VoucherItem.tsx ~ line 13 ~ VoucherItem ~ length",
+  //   vouchers.length
+  // );
 
   return (
     <div className=" w-full h-full  ">
@@ -35,12 +42,10 @@ const VoucherItem = () => {
 
               <div
                 onClick={() => {
-                  setVoucherIndex(index + 1);
+                  setVoucherIndex(index);
                   setAddVoucher(true);
                 }}
-                className={`EditVoucher cursor-pointer mr-[5px] id=${
-                  index + 1
-                }`}
+                className={`EditVoucher cursor-pointer mr-[5px] id=${index}`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +71,7 @@ const VoucherItem = () => {
           <div
             onClick={() => {
               setAddVoucher(true);
-              setVoucherIndex(0);
+              setVoucherIndex(-1);
             }}
             className="flex cursor-pointer"
           >

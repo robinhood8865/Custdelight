@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
 import WidgetBox from "./WidgetBox";
 
@@ -7,8 +7,7 @@ const Widget = () => {
   const module = useAppSelector((state) => state.module);
   const theme = useAppSelector((state) => state.theme);
 
-  const { styleIndex, headerColor, buttonColor, widgetColor } = theme;
-  const { visibleMemberShip, visibleVouchers, visiblePayment } = module;
+  const { widgetColor } = theme;
   const [visibleWidget, setVisibleWidget] = useState(true);
 
   return (
