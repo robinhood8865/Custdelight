@@ -14,6 +14,10 @@ const BuilderNavBar = () => {
   const module = useAppSelector((state) => state.module);
 
   const theme = useAppSelector((state) => state.theme);
+  console.log(
+    "🚀 ~ file: BuilderNavBar.tsx ~ line 17 ~ BuilderNavBar ~ theme",
+    theme
+  );
   const setting = useAppSelector((state) => state.setting);
 
   const onPublish = async (e: any) => {

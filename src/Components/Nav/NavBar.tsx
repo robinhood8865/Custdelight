@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("accessToken");
+
   return (
     <div className="relative w-full h-[54px] bg-user-main flex">
       <Link
@@ -334,9 +336,9 @@ const NavBar = () => {
                   <Link
                     className=" dropdown -item py-2 px-4 block w-full whitespace-nowrap
               bg-transparent text-white hover:bg-user-main-hover text-left"
-                    to="/signin"
+                    to={accessToken ? "/signout" : "/signin"}
                   >
-                    Sign In
+                    {accessToken ? "Sign Out" : "Sign In"}
                   </Link>
                 </li>
               </ul>

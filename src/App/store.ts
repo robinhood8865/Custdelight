@@ -6,6 +6,8 @@ import voucherReducer from "../Slices/voucherSlice";
 import moduleReducer from "../Slices/moduleSlice";
 import themeReducer from "../Slices/themeSlice";
 import settingReducer from "../Slices/settingSlice";
+import paymentReducer from "../Slices/paymentSlice";
+
 const reducer = {
   auth: authReducer,
   message: messageReducer,
@@ -14,6 +16,7 @@ const reducer = {
   module: moduleReducer,
   theme: themeReducer,
   setting: settingReducer,
+  payment: paymentReducer,
 };
 
 const store = configureStore({

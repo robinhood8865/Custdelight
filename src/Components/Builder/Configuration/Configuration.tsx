@@ -8,20 +8,24 @@ import MembershipUser from "./MembershipUser";
 import VoucherUser from "./VoucherUser";
 import VoucherSettings from "./VoucherSettings";
 import VoucherItem from "./VoucherItem";
+import PaymentSettings from "./PaymentSettings";
 
 const Configuration = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const moduleIndex = useAppSelector((state) => state.module.moduleIndex);
-  console.log(moduleIndex);
   const getCurrentPage = (url: string): boolean => {
     return location.pathname.toLowerCase().startsWith("/builder/" + url);
   };
-  // useEffect(() => {
-  //   setShowConfig(true);
-  // }, []);
   const [showConfig, setShowConfig] = useState(true);
   const [type, setType] = useState(0);
+
+  //first configration tab when click module
+  useEffect(() => {
+    if (moduleIndex === 3) setType(2);
+    else setType(0);
+  }, [moduleIndex]);
+
   return (
     <div>
       {getCurrentPage("modules") && showConfig && (
@@ -35,68 +39,74 @@ const Configuration = () => {
           <div className=" w-full border-t-[1px] border-[#DFDFDF] pl-[27px] pr-[23px] pt-[25px]">
             <div className=" w-full h-full mb-[35px] ">
               <div className="h-[40px] flex justify-between ">
-                <div
-                  onClick={() => {
-                    setType(0);
-                  }}
-                  className="cursor-pointer h-full w-[50px] ml-[2px]"
-                >
-                  <div>
-                    <div className="flex justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill={type === 0 ? "#812FBF" : "#30313D"}
-                      >
-                        <g id="globe">
-                          <path
-                            id="Glyph"
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M4.36914 16H8.99914C9.55143 16 9.99914 15.5523 9.99914 15C9.99914 14.717 9.88156 14.4614 9.69258 14.2795C11.1556 13.6157 12.4324 12.5077 13.2975 11.0156C15.5066 7.20541 14.1956 2.33337 10.3693 0.133575C9.89102 -0.141401 9.27942 0.0217819 9.00328 0.498053C8.72714 0.974323 8.89102 1.58333 9.36931 1.8583C12.2391 3.50815 13.2223 7.16218 11.5655 10.0198C9.90861 12.8774 6.23906 13.8565 3.36931 12.2067C2.89102 11.9317 2.27942 12.0949 2.00328 12.5712C1.72714 13.0474 1.89101 13.6564 2.36931 13.9314C2.74287 14.1462 3.1266 14.3275 3.51701 14.4764C3.42323 14.6287 3.36914 14.808 3.36914 15C3.36914 15.5523 3.81686 16 4.36914 16ZM1.61914 7C1.61914 9.62335 3.74579 11.75 6.36914 11.75C8.99249 11.75 11.1191 9.62335 11.1191 7C11.1191 4.37665 8.99249 2.25 6.36914 2.25C3.74579 2.25 1.61914 4.37665 1.61914 7Z"
-                          />
-                        </g>
-                      </svg>
-                    </div>
-                    <div
-                      className={`${
-                        type === 0 ? "text-user-main" : "text-black"
-                      } mt-[7px]  flex justify-center text-[12px] font-bold leading-[15px]`}
-                    >
-                      {moduleIndex === 1 ? "Type" : "Item"}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  onClick={() => {
-                    setType(1);
-                  }}
-                  className="cursor-pointer h-full w-[50px] "
-                >
-                  <div>
-                    <div className="flex justify-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill={type === 1 ? "#812FBF" : "#30313D"}
-                      >
-                        <path d="M8.1962 0H7.8038C7.70679 0 7.60982 0.00403343 7.51314 0.0120898C5.58682 0.172616 4.15536 1.86434 4.31589 3.79066L4.4801 5.76123C4.63266 7.59189 6.163 9 8 9C9.837 9 11.3673 7.59189 11.5199 5.76123L11.6841 3.79066C11.6922 3.69398 11.6962 3.59701 11.6962 3.5C11.6962 1.567 10.1292 0 8.1962 0Z" />
-                        <path d="M11.9001 9.46256C10.8772 10.4176 9.50449 11 8 11C6.49551 11 5.12276 10.4176 4.09985 9.46256L2.34082 10.1222C0.932802 10.6502 0 11.9962 0 13.5V15C0 15.5523 0.447715 16 1 16H15C15.5523 16 16 15.5523 16 15V13.5C16 11.9962 15.0672 10.6502 13.6592 10.1222L11.9001 9.46256Z" />
-                      </svg>
-                    </div>
-                    <div className="mt-[8px] flex justify-center text-[12px] font-bold leading-[15px]">
+                {moduleIndex !== 3 && (
+                  <div
+                    onClick={() => {
+                      setType(0);
+                    }}
+                    className="cursor-pointer h-full w-[50px] ml-[2px]"
+                  >
+                    <div>
+                      <div className="flex justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill={type === 0 ? "#812FBF" : "#30313D"}
+                        >
+                          <g id="globe">
+                            <path
+                              id="Glyph"
+                              fillRule="evenodd"
+                              clipRule="evenodd"
+                              d="M4.36914 16H8.99914C9.55143 16 9.99914 15.5523 9.99914 15C9.99914 14.717 9.88156 14.4614 9.69258 14.2795C11.1556 13.6157 12.4324 12.5077 13.2975 11.0156C15.5066 7.20541 14.1956 2.33337 10.3693 0.133575C9.89102 -0.141401 9.27942 0.0217819 9.00328 0.498053C8.72714 0.974323 8.89102 1.58333 9.36931 1.8583C12.2391 3.50815 13.2223 7.16218 11.5655 10.0198C9.90861 12.8774 6.23906 13.8565 3.36931 12.2067C2.89102 11.9317 2.27942 12.0949 2.00328 12.5712C1.72714 13.0474 1.89101 13.6564 2.36931 13.9314C2.74287 14.1462 3.1266 14.3275 3.51701 14.4764C3.42323 14.6287 3.36914 14.808 3.36914 15C3.36914 15.5523 3.81686 16 4.36914 16ZM1.61914 7C1.61914 9.62335 3.74579 11.75 6.36914 11.75C8.99249 11.75 11.1191 9.62335 11.1191 7C11.1191 4.37665 8.99249 2.25 6.36914 2.25C3.74579 2.25 1.61914 4.37665 1.61914 7Z"
+                            />
+                          </g>
+                        </svg>
+                      </div>
                       <div
-                        className={type === 1 ? "text-user-main" : "text-black"}
+                        className={`${
+                          type === 0 ? "text-user-main" : "text-black"
+                        } mt-[7px]  flex justify-center text-[12px] font-bold leading-[15px]`}
                       >
-                        Users
+                        {moduleIndex === 1 ? "Type" : "Item"}
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
+                {moduleIndex !== 3 && (
+                  <div
+                    onClick={() => {
+                      setType(1);
+                    }}
+                    className="cursor-pointer h-full w-[50px] "
+                  >
+                    <div>
+                      <div className="flex justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 16 16"
+                          fill={type === 1 ? "#812FBF" : "#30313D"}
+                        >
+                          <path d="M8.1962 0H7.8038C7.70679 0 7.60982 0.00403343 7.51314 0.0120898C5.58682 0.172616 4.15536 1.86434 4.31589 3.79066L4.4801 5.76123C4.63266 7.59189 6.163 9 8 9C9.837 9 11.3673 7.59189 11.5199 5.76123L11.6841 3.79066C11.6922 3.69398 11.6962 3.59701 11.6962 3.5C11.6962 1.567 10.1292 0 8.1962 0Z" />
+                          <path d="M11.9001 9.46256C10.8772 10.4176 9.50449 11 8 11C6.49551 11 5.12276 10.4176 4.09985 9.46256L2.34082 10.1222C0.932802 10.6502 0 11.9962 0 13.5V15C0 15.5523 0.447715 16 1 16H15C15.5523 16 16 15.5523 16 15V13.5C16 11.9962 15.0672 10.6502 13.6592 10.1222L11.9001 9.46256Z" />
+                        </svg>
+                      </div>
+                      <div className="mt-[8px] flex justify-center text-[12px] font-bold leading-[15px]">
+                        <div
+                          className={
+                            type === 1 ? "text-user-main" : "text-black"
+                          }
+                        >
+                          Users
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <div
                   onClick={() => {
                     setType(2);
@@ -142,7 +152,8 @@ const Configuration = () => {
                 (moduleIndex === 2 && <VoucherUser />))}
             {type === 2 &&
               ((moduleIndex === 1 && <MembershipSettings />) ||
-                (moduleIndex === 2 && <VoucherSettings />))}
+                (moduleIndex === 2 && <VoucherSettings />) ||
+                (moduleIndex === 3 && <PaymentSettings />))}
           </div>
         </div>
       )}

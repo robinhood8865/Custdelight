@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import SignIn from "./Components/Author/SignIn";
 import SignUp from "./Components/Author/SignUp";
+import SignOut from "./Components/Author/SignOut";
 import Subscription from "./Pages/Subscription";
 
 // Redux
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<AuthorLayout />}>
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/signout" element={<SignOut />} />
           </Route>
           <Route path="/subscription" element={<Subscription />} />
 

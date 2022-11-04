@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import { IconPath } from "../Builder/Components/IconInput";
 import WidgetBox from "./WidgetBox";
 
 const Widget = () => {
   const dispatch = useAppDispatch();
   const module = useAppSelector((state) => state.module);
   const theme = useAppSelector((state) => state.theme);
+  const widgetIcon = useAppSelector((state) => state.theme.widgetIcon);
 
   const { widgetColor } = theme;
   const [visibleWidget, setVisibleWidget] = useState(true);
@@ -35,6 +37,9 @@ const Widget = () => {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
+          )}
+          {!visibleWidget && (
+            <img className="rounded" src={IconPath(widgetIcon)} alt="avatar" />
           )}
         </button>
         {visibleWidget && <WidgetBox />}

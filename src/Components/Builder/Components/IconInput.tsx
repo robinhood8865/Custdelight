@@ -2,14 +2,10 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../App/hooks";
 import { setStyleIndex, setwidgetIcon } from "../../../Slices/themeSlice";
 import ApiService from "../../../Services/ApiService";
-import custdelight from "../../../Assets/uploads/icon/custdelight.png";
-// import my from "http://localhost:5000/static/uploads/icon/custdelight.png";
-console.log("🚀 ~ file: IconInput.tsx ~ line 6 ~ custdelight", custdelight);
-// import main_picture from "../../../src/Assets/Images/dash_picture.png";
-export const IconPath = (IconName: string = "custdelight.png") => {
-  // return `../../../Assets/uploads/icon/${IconName}`;
+
+export const IconPath = (IconName: string = "custdelight.jpg") => {
   const SERVER_URL = process.env.REACT_APP_BACKEND_API;
-  return `${SERVER_URL}/static/uploads/icon/${IconName}`;
+  return `${SERVER_URL}/uploads/icon/${IconName}`;
 };
 const IconInput = (props: any) => {
   const { widgetIcon } = useAppSelector((state) => state.theme);
@@ -76,11 +72,7 @@ const IconInput = (props: any) => {
           />
         </div>
         <div className="absolute left-4 top-[6px] rounded w-[35px] h-[35px] flex items-center bg-black">
-          <img
-            className="rounded"
-            src={custdelight}
-            // src={"require(" + IconPath("custdelight.png") + ""}
-          />
+          <img className="rounded" src={IconPath(widgetIcon)} alt="avatar" />
         </div>
 
         <div className="z-10 h-full  font-normal absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
