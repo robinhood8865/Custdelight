@@ -17,6 +17,7 @@ import { setVoucherconfiguration } from "../../Slices/voucherSlice";
 import { setThemeconfiguration } from "../../Slices/themeSlice";
 import { setSettingconfiguration } from "../../Slices/settingSlice";
 import { setModuleconfiguration } from "../../Slices/moduleSlice";
+import { setIntegraconfiguration } from "../../Slices/integrationSlice";
 
 const SignIn = (props: any) => {
   const [show, setShow] = useState(false);
@@ -32,7 +33,7 @@ const SignIn = (props: any) => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     const dispatchData = (data: any) => {
-      const { module, theme, setting } = data;
+      const { module, theme, setting, airtable } = data;
       const { membership, voucher, membershipId, voucherId, ...tempModule } =
         module;
 
@@ -46,6 +47,9 @@ const SignIn = (props: any) => {
       dispatch(setThemeconfiguration(getData(themeData)));
       const settingData = getData(setting);
       dispatch(setSettingconfiguration(settingData));
+      const airtableData = getData(airtable);
+      dispatch(setIntegraconfiguration(airtableData));
+
       const widget = {
         module: {
           membership: membershipData,
@@ -54,12 +58,14 @@ const SignIn = (props: any) => {
         },
         theme: themeData,
         setting: settingData,
+        airtable: airtableData,
       };
       return widget;
     };
 
     login(email, password).then(
       (response) => {
+        console.log(response);
         const widget = response.widgetdata;
         const loadData = dispatchData(widget);
         if (response.accessToken) {
@@ -73,7 +79,11 @@ const SignIn = (props: any) => {
         navigate("/");
       },
       (error) => {
-        const resMessage = error.response.errors[0].msg;
+        const resMessage = error?.msg;
+        console.log(
+          "🚀 ~ file: SignIn.tsx ~ line 78 ~ handleSubmit ~ resMessage",
+          resMessage
+        );
         toast.error(resMessage);
       }
     );

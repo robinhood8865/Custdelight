@@ -63,11 +63,8 @@ const SignUp = () => {
         navigate("/signin");
       },
       (error) => {
-        // console.log(error);
-        const resMessage = error.response.data.errors[0].msg;
-        setMessage(resMessage);
-        console.log(resMessage);
-        toast.error(resMessage);
+        console.log(error);
+       
         setSuccessful(false);
       }
     );

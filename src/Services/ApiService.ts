@@ -15,7 +15,8 @@ Axios.interceptors.request.use(
     return config;
   },
   (error) => {
-    Promise.reject(error);
+    // Promise.reject(error);
+    Promise.reject(error?.response?.data?.errors?.[0]);
   }
 );
 
@@ -23,8 +24,9 @@ Axios.interceptors.response.use(
   (response) => {
     return response;
   },
-  async function (error) {
-    console.log(error.response);
+
+  (error) => {
+    Promise.reject(error?.response?.data?.errors?.[0]);
   }
 );
 
@@ -34,6 +36,9 @@ const END_POINTS = {
   READ_WIDGET: `${SERVER_URL}/${API_VERSION}/widget`,
   UPDATE_WIDGET: `${SERVER_URL}/${API_VERSION}/widget`,
   UPLOAD: `${SERVER_URL}/${API_VERSION}/upload/icon`,
+  UPDATE_AIRTABLE_APIKEY: `${SERVER_URL}/${API_VERSION}/updateapikey`,
+  CREATE_AIRTABLE_BASE: `${SERVER_URL}/${API_VERSION}/airtableApi/createbase`,
+  CONNECT_AIRTABLE_BASE: `${SERVER_URL}/${API_VERSION}/airtableApi/connectbase`,
 
   // USERS: `${SERVER_URL}/${API_VERSION}/users`,
 };
@@ -43,6 +48,20 @@ class ApiService {
   static updateWidget = async (data: any) => {
     return await Axios.request({
       url: `${END_POINTS.UPDATE_WIDGET}`,
+      method: "post",
+      data,
+    });
+  };
+  static createBase = async (data: any) => {
+    return await Axios.request({
+      url: `${END_POINTS.CREATE_AIRTABLE_BASE}`,
+      method: "post",
+      data,
+    });
+  };
+  static connectBase = async (data: any) => {
+    return await Axios.request({
+      url: `${END_POINTS.CONNECT_AIRTABLE_BASE}`,
       method: "post",
       data,
     });

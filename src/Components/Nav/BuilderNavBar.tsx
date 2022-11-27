@@ -12,12 +12,9 @@ const BuilderNavBar = () => {
   const membership = useAppSelector((state) => state.membership);
   const voucher = useAppSelector((state) => state.voucher);
   const module = useAppSelector((state) => state.module);
-
   const theme = useAppSelector((state) => state.theme);
-  console.log(
-    "🚀 ~ file: BuilderNavBar.tsx ~ line 17 ~ BuilderNavBar ~ theme",
-    theme
-  );
+  const integration = useAppSelector((state) => state.integration);
+
   const setting = useAppSelector((state) => state.setting);
 
   const onPublish = async (e: any) => {
@@ -34,6 +31,7 @@ const BuilderNavBar = () => {
       },
       theme,
       setting,
+      integration,
     };
 
     const data = { widgetId, widget };
