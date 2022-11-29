@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
-import ReactDOM from "react-dom/client";
 import { useState } from "react";
 
 import { Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
 import Icfb_logo from "../../../src/Assets/Images/ic_fb_logo.svg";
 import { Input } from "@material-tailwind/react";
 import "font-awesome/css/font-awesome.min.css";
@@ -11,7 +8,7 @@ import Icgoogle_logo from "../../../src/Assets/Images/ic_google_logo.svg";
 import { login } from "../../Services/auth.service";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import { useAppDispatch } from "../../App/hooks";
 import { setMemebershipconfiguration } from "../../Slices/membershipSlice";
 import { setVoucherconfiguration } from "../../Slices/voucherSlice";
 import { setThemeconfiguration } from "../../Slices/themeSlice";

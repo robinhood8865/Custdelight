@@ -1,9 +1,7 @@
 import React from "react";
-import { Component } from "react";
+
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+
 import { useNavigate } from "react-router-dom";
 
 import { register } from "../../Services/auth.service";
@@ -24,26 +22,17 @@ interface IUser {
   roles?: Array<string>;
 }
 
-const schema = yup.object().shape({
-  email: yup.string().required(),
-  firstname: yup.string().required(),
-  lastname: yup.string().required(),
-  password: yup.string().required(),
-});
+// const schema = yup.object().shape({
+//   email: yup.string().required(),
+//   firstname: yup.string().required(),
+//   lastname: yup.string().required(),
+//   password: yup.string().required(),
+// });
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
   const [agree, setAgree] = useState(false);
-  const [successful, setSuccessful] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>("");
   const navigate = useNavigate();
-
-  const initialValues: IUser = {
-    email: "",
-    firstname: "",
-    lastname: "",
-    password: "",
-  };
 
   const handleRegister = (event: any) => {
     const email = event.target.email.value;
@@ -56,16 +45,10 @@ const SignUp = () => {
     register(firstname, lastname, email, password).then(
       (response) => {
         toast.success("successfully registered");
-        console.log(response);
-        // localStorage.setItem("token", JSON.stringify(response.data.));
-        setMessage(response.data.message);
-        setSuccessful(true);
         navigate("/signin");
       },
       (error) => {
         console.log(error);
-       
-        setSuccessful(false);
       }
     );
     event.preventDefault();

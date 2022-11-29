@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { ColorPicker, useColor } from "react-color-palette";
 
 import "react-color-palette/lib/css/styles.css";
-import { useAppSelector, useAppDispatch } from "../../../App/hooks";
+import { useAppDispatch } from "../../../App/hooks";
 import { setButtonColor } from "../../../Slices/themeSlice";
 
 const ButtonColorPalete = (props: any) => {
