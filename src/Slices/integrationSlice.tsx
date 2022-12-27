@@ -4,12 +4,20 @@ export interface IntegrationState {
   airtableBaseID: string;
   airtableAPIKey: string;
   airtableState: number;
+  publishableKey: string;
+  secretKey: string;
 }
 
 const widget = localStorage.getItem("widget");
 const initialState: IntegrationState = widget
-  ? JSON.parse(widget).airtable
-  : { airtableBaseID: "", airtableAPIKey: "", airtableState: 0 };
+  ? JSON.parse(widget).integration
+  : {
+      airtableBaseID: "",
+      airtableAPIKey: "",
+      airtableState: 0,
+      publishableKey: "",
+      secretKey: "",
+    };
 
 const integrationSlice = createSlice({
   name: "Integration",
@@ -27,6 +35,12 @@ const integrationSlice = createSlice({
     setAirtableState: (state, action: PayloadAction<number>) => {
       state.airtableState = action.payload;
     },
+    setPublisableKey: (state, action: PayloadAction<string>) => {
+      state.publishableKey = action.payload;
+    },
+    setSecretKey: (state, action: PayloadAction<string>) => {
+      state.secretKey = action.payload;
+    },
   },
 });
 
@@ -36,5 +50,7 @@ export const {
   setAirtableBaseID,
   setAirtableAPIKey,
   setAirtableState,
+  setPublisableKey,
+  setSecretKey,
 } = actions;
 export default reducer;

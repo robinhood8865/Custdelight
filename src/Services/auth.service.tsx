@@ -48,7 +48,6 @@ export const login = (email: string, password: string) => {
       password,
     })
     .then((response) => {
-      console.log(response);
       return response.data;
     });
 };

@@ -9,15 +9,14 @@ import {
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../App/hooks";
 import {
-  setPaymentconfiguration,
   setPublisableKey,
   setSecretKey,
-} from "../../../Slices/paymentSlice";
+} from "../../../Slices/integrationSlice";
 
 const PaymentSettings = () => {
   const dispatch = useAppDispatch();
-  const payment = useAppSelector((state) => state.payment);
-  const { publishableKey, secretKey } = payment;
+  const integration = useAppSelector((state) => state.integration);
+  const { publishableKey, secretKey } = integration;
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);

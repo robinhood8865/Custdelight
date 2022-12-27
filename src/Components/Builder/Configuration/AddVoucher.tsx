@@ -32,33 +32,29 @@ const AddVoucher = (props: any) => {
   const handleOpen = () => setOpen(!open);
 
   // voucher options
-
+  // create voucher
   const [title, setTitle] = useState("");
   const [type, setType] = useState(1);
   const [expiryTerm, setExpiryTerm] = useState(1);
   const [usualPrice, setUsualPrice] = useState(200);
   const [discountedPrice, setDiscountedPrice] = useState(200);
   const [term, setTerm] = useState("");
+  const [prodId, setProdId] = useState("");
+  const [flag, setFlag] = useState(1);
 
   useEffect(() => {
     if (voucherIndex !== -1) {
+      //edit voucher
       setTitle(vouchers[voucherIndex].voucherTitle);
       setType(vouchers[voucherIndex].voucherType);
       setExpiryTerm(vouchers[voucherIndex].voucherExpiryTerm);
       setUsualPrice(vouchers[voucherIndex].voucherUsualPrice);
       setDiscountedPrice(vouchers[voucherIndex].voucherDiscountedPrice);
       setTerm(vouchers[voucherIndex].voucherTerms);
+      setProdId(vouchers[voucherIndex].voucherProdId);
+      setFlag(2);
     }
   }, []);
-
-  // const {
-  //   voucherTitle,
-  //   voucherType,
-  //   voucherExpiryTerm,
-  //   voucherUsualPrice,
-  //   voucherDiscountedPrice,
-  //   voucherTerms,
-  // } = vouchers[0];
 
   const expiryOptions = [
     { value: "7 Days", index: "1" },
@@ -192,6 +188,8 @@ const AddVoucher = (props: any) => {
               voucherUsualPrice: usualPrice,
               voucherDiscountedPrice: discountedPrice,
               voucherTerms: term,
+              voucherProdId: prodId,
+              voucherFlag: flag,
             };
             if (voucherIndex === -1) dispatch(setVoucher(voucher));
             else {
@@ -276,7 +274,12 @@ const AddVoucher = (props: any) => {
             />
           </svg>
         </div>
-        <div className="ml-[12px] mb-[20px] text-black text-[16px] leading-[20px] font-bold">
+        <div
+          onClick={() => {
+            setFlag(0);
+          }}
+          className="ml-[12px] mb-[20px] text-black text-[16px] leading-[20px] font-bold"
+        >
           Back to Voucher Item List
         </div>
       </div>

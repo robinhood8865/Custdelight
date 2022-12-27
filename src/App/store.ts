@@ -6,7 +6,6 @@ import voucherReducer from "../Slices/voucherSlice";
 import moduleReducer from "../Slices/moduleSlice";
 import themeReducer from "../Slices/themeSlice";
 import settingReducer from "../Slices/settingSlice";
-import paymentReducer from "../Slices/paymentSlice";
 import integrationReducer from "../Slices/integrationSlice";
 
 const reducer = {
@@ -17,7 +16,6 @@ const reducer = {
   module: moduleReducer,
   theme: themeReducer,
   setting: settingReducer,
-  payment: paymentReducer,
   integration: integrationReducer,
 };
 

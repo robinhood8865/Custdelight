@@ -1,21 +1,58 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "tw-elements";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
-import { useAppDispatch, useAppSelector } from "../../App/hooks";
+import { useAppSelector, useAppDispatch } from "../../App/hooks";
 import ApiService from "../../Services/ApiService";
 import toast from "react-hot-toast";
 
+import { setMemebershipconfiguration } from "../../Slices/membershipSlice";
+import { setVoucherconfiguration } from "../../Slices/voucherSlice";
+import { setThemeconfiguration } from "../../Slices/themeSlice";
+import { setSettingconfiguration } from "../../Slices/settingSlice";
+import { setModuleconfiguration } from "../../Slices/moduleSlice";
+import { setIntegraconfiguration } from "../../Slices/integrationSlice";
+
 const BuilderNavBar = () => {
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const membership = useAppSelector((state) => state.membership);
   const voucher = useAppSelector((state) => state.voucher);
   const module = useAppSelector((state) => state.module);
   const theme = useAppSelector((state) => state.theme);
+  const setting = useAppSelector((state) => state.setting);
   const integration = useAppSelector((state) => state.integration);
 
-  const setting = useAppSelector((state) => state.setting);
+  const getData = (data: any) => {
+    const { __v, _id, id, ...tempdata } = data;
+    return tempdata;
+  };
+  const dispatchData = (data: any) => {
+    const { module, theme, setting, integration } = data;
+    const { membership, voucher, membershipId, voucherId, ...tempModule } =
+      module;
+
+    dispatch(setMemebershipconfiguration(membership));
+    for (let i = 0; i < voucher.vouchers.length; i++) {
+      voucher.vouchers[i].voucherFlag = 0;
+    }
+    dispatch(setVoucherconfiguration(voucher));
+    dispatch(setModuleconfiguration(tempModule));
+    dispatch(setThemeconfiguration(getData(theme)));
+    dispatch(setSettingconfiguration(setting));
+    dispatch(setIntegraconfiguration(integration));
+
+    const widget = {
+      module: {
+        membership,
+        voucher,
+        ...module,
+      },
+      theme,
+      setting,
+      integration,
+    };
+    return widget;
+  };
 
   const onPublish = async (e: any) => {
     e.preventDefault();
@@ -33,13 +70,14 @@ const BuilderNavBar = () => {
       setting,
       integration,
     };
+    console.log("🚀 ~ file: BuilderNavBar.tsx:33 ~ onPublish ~ widget", widget);
 
     const data = { widgetId, widget };
 
-    const error = await ApiService.updateWidget(data);
-    console.log("res", error);
+    const newWidget = await ApiService.updateWidget(data); //update Widget
+    const newWidgetData = dispatchData(newWidget.data);
     localStorage.removeItem("widget");
-    localStorage.setItem("widget", JSON.stringify(widget));
+    localStorage.setItem("widget", JSON.stringify(newWidgetData));
     toast.success("successfully published");
 
     // axios.post(API_URL + "/module", data).then((response) => {

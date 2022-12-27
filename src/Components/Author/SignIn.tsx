@@ -30,13 +30,16 @@ const SignIn = (props: any) => {
     const email = event.target.email.value;
     const password = event.target.password.value;
     const dispatchData = (data: any) => {
-      const { module, theme, setting, airtable } = data;
+      const { module, theme, setting, integration } = data;
       const { membership, voucher, membershipId, voucherId, ...tempModule } =
         module;
 
       const membershipData = getData(membership[0]);
       dispatch(setMemebershipconfiguration(membershipData));
       const voucherData = getData(voucher[0]);
+      for (let i = 0; i < voucherData.vouchers.length; i++) {
+        voucherData.vouchers[i].voucherFlag = 0;
+      }
       dispatch(setVoucherconfiguration(voucherData));
       const moduleData = getData(tempModule);
       dispatch(setModuleconfiguration(moduleData));
@@ -44,8 +47,8 @@ const SignIn = (props: any) => {
       dispatch(setThemeconfiguration(getData(themeData)));
       const settingData = getData(setting);
       dispatch(setSettingconfiguration(settingData));
-      const airtableData = getData(airtable);
-      dispatch(setIntegraconfiguration(airtableData));
+      const integrationData = getData(integration);
+      dispatch(setIntegraconfiguration(integrationData));
 
       const widget = {
         module: {
@@ -55,7 +58,7 @@ const SignIn = (props: any) => {
         },
         theme: themeData,
         setting: settingData,
-        airtable: airtableData,
+        integration: integrationData,
       };
       return widget;
     };

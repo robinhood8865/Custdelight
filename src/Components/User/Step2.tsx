@@ -1,3 +1,4 @@
+import { convertHexToDecimal } from "@ctrl/tinycolor";
 import { Button, Input } from "@material-tailwind/react";
 import { AsyncResource } from "async_hooks";
 import { useState, useEffect } from "react";
@@ -22,12 +23,24 @@ const Step2 = () => {
 
   const update = async () => {
     console.log(airtableAPIKey, airtableBaseID, airtableState);
-    const result = await ApiService.connectBase(integration);
+    const data = { airtableAPIKey: apiKey, airtableBaseID: baseId };
 
-    if (result.data) toast.success(result.data);
-    else toast("error");
+    console.log("🚀 ~ file: Step2.tsx:27 ~ update ~ data", data);
+    const result = await ApiService.connectBase(data);
+    console.log("🚀 ~ file: Step2.tsx:30 ~ update ~ result", result);
 
-    console.log(result);
+    if (result?.data) {
+      toast.success("Connect Success");
+      dispatch(setAirtableState(2));
+      dispatch(setAirtableAPIKey(apiKey));
+      dispatch(setAirtableBaseID(baseId));
+    } else {
+      toast.error("Connection Faild, Incorrect APIKey or BaseId");
+      dispatch(setAirtableState(1));
+    }
+
+    //keyZo3Y0Rrb662fzT
+    //appFgsnjRRLox23zr
   };
 
   return (
@@ -71,10 +84,6 @@ const Step2 = () => {
         <div className="mt-[20px] flex justify-center">
           <Button
             onClick={() => {
-              dispatch(setAirtableAPIKey(apiKey));
-              dispatch(setAirtableState(2));
-              dispatch(setAirtableBaseID(baseId));
-              // dispatch(setAirtableBaseID("appFgsnjRRLox23zr"));
               update();
             }}
             className="w-full h-[50px] bg-[#812FBF] text-[16px] font-bold normal-case"

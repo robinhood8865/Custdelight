@@ -7,6 +7,8 @@ export interface Voucher {
   voucherUsualPrice: number;
   voucherDiscountedPrice: number;
   voucherTerms: string;
+  voucherProdId: string;
+  voucherFlag: number;
 }
 export interface VoucherState {
   vouchers: Voucher[];
@@ -81,6 +83,12 @@ const VoucherSlice = createSlice({
     },
     setVoucherTerms: (state, action: PayloadAction<string>) => {
       state.vouchers[0].voucherTerms = action.payload;
+    },
+    setVoucherProdId: (state, action: PayloadAction<string>) => {
+      state.vouchers[0].voucherProdId = action.payload;
+    },
+    setVoucherFlag: (state, action: PayloadAction<number>) => {
+      state.vouchers[0].voucherFlag = action.payload;
     },
     setVoucherFirstName: (state, action: PayloadAction<boolean>) => {
       state.voucherFirstName = action.payload;
