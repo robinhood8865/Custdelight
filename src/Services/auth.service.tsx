@@ -42,6 +42,7 @@ export const register = (
 
 export const login = (email: string, password: string) => {
   console.log("login");
+  console.log(email, password);
   return axiosInstance
     .post(API_URL + "/signin", {
       email,
