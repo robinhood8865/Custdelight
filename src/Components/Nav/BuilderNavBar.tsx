@@ -75,6 +75,10 @@ const BuilderNavBar = () => {
     const data = { widgetId, widget };
 
     const newWidget = await ApiService.updateWidget(data); //update Widget
+    console.log(
+      "🚀 ~ file: BuilderNavBar.tsx:78 ~ onPublish ~ newWidget",
+      newWidget
+    );
     const newWidgetData = dispatchData(newWidget.data);
     localStorage.removeItem("widget");
     localStorage.setItem("widget", JSON.stringify(newWidgetData));

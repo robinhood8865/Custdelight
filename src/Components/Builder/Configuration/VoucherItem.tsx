@@ -27,7 +27,10 @@ const VoucherItem = () => {
                 <div className="VoucherPrice">
                   {voucher.voucherType === 1
                     ? "Free"
-                    : "$" + voucher.voucherUsualPrice}
+                    : "$" +
+                      (voucher.voucherDiscountedPrice !== 0
+                        ? voucher.voucherDiscountedPrice
+                        : voucher.voucherUsualPrice)}
                 </div>
               </div>
 

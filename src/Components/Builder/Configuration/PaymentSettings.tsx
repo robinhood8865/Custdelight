@@ -68,7 +68,7 @@ const PaymentSettings = () => {
         value={secretKey}
         label="Secret key"
       />
-      <div className="SaveAndDelete flex  items-center justify-between mt-[65px]">
+      {/* <div className="SaveAndDelete flex  items-center justify-between mt-[65px]">
         <Button onClick={() => {}} className="bg-user-main w-[130px] h-[50px]">
           Save
         </Button>
@@ -113,7 +113,7 @@ const PaymentSettings = () => {
             </Button>
           </DialogFooter>
         </Dialog>
-      </div>
+      </div> */}
       <div className="absolute w-full top-[435px]"></div>
     </div>
   );
